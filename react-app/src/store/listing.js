@@ -11,7 +11,7 @@ const getListings = (data) => ({
 
 export const getListingsThunk = () => async (dispatch) => {
     // console.log("++++++++++++")
-    const response = await fetch('/api/listings')
+    const response = await fetch('/api/listings/')
 
     if (response.ok) {
         const data = await response.json();
