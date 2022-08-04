@@ -22,9 +22,31 @@ def seed_listings():
         description = "Quiet and clean",
         price = 400
     )
+    listing3 = Listing(
+        user_id = 1,
+        address = "2 Main St",
+        city = "Los Angeles",
+        state = "CA",
+        zip = "90000",
+        category = "House",
+        description = "Quiet and clean",
+        price = 350
+    )
+    listing4 = Listing(
+        user_id = 2,
+        address = "6 Main St",
+        city = "Los Angeles",
+        state = "CA",
+        zip = "90000",
+        category = "House",
+        description = "Quiet and clean",
+        price = 350
+    )
 
     db.session.add(listing1)
     db.session.add(listing2)
+    db.session.add(listing3)
+    db.session.add(listing4)
 
 
     db.session.commit()
