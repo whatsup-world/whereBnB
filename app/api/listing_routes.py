@@ -17,7 +17,7 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@listing_routes.route('')
+@listing_routes.route('/')
 def listing_get():
     listings = Listing.query.all()
     return {'Listings': [listing.to_dict() for listing in listings]}
