@@ -32,7 +32,7 @@ const ListingForm = () => {
             price
         }
 
-        // console.log(newListing)
+        console.log("new push")
         await dispatch(addListingThunk(payload))
         history.push(`/listings`)
 
