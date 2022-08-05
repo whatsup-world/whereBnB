@@ -20,7 +20,10 @@ function Listings() {
             {
                 Object.values(listings).map(listing => (
                     <div key={listing.id}>
-                        <p>{listing.address}, {listing.city}, {listing.state}{listing.zip}</p>
+                        <h3>{listing.address}, {listing.city}, {listing.state} {listing.zip}</h3>
+                        <p>{listing.category}</p>
+                        <p>{listing.description}</p>
+                        <p>{listing.price}</p>
                     </div>
                     // {console.log(listing)}
                 ))

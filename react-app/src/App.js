@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 
 import Listings from './components/ListingComponent/Listings/Listings';
+import ListingForm from './components/ListingComponent/NewListing/NewListing';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,6 +49,9 @@ function App() {
         <Route path='/listings' exact={true} >
           <Listings />
         </Route>
+        <ProtectedRoute path='/newListing'>
+          <ListingForm />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

@@ -35,6 +35,11 @@ const NavBar = () => {
             All Listings
           </NavLink>
         </li>
+        <li>
+          <NavLink to='/newListing' exact={true} activeClassName='active'>
+            New Listing
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
