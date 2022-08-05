@@ -11,6 +11,8 @@ import { authenticate } from './store/session';
 
 import Listings from './components/ListingComponent/Listings/Listings';
 import ListingForm from './components/ListingComponent/NewListing/NewListing';
+import SingleListing from './components/ListingComponent/SingleListing/SingleListing';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,6 +50,9 @@ function App() {
         </Route>
         <Route path='/listings' exact={true} >
           <Listings />
+        </Route>
+        <Route path='/listings/:listingId' exact={true} >
+          <SingleListing />
         </Route>
         <ProtectedRoute path='/newListing'>
           <ListingForm />
