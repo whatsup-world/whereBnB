@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { getListingsThunk } from '../../../store/listing';
 
-function Listings() {
+const Listings = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
     const listings = useSelector(state => state.listing)
 
     // const listings = useSelector(state => state.listing)
@@ -14,12 +16,16 @@ function Listings() {
 
     // console.log("component+++++++",listings)
 
+    const goToSingleListing = (listing) => {
+        history.push(`/listings/${listing.id}`)
+    }
+
     return (
         <div>
             <h1>All Listings</h1>
             {
                 Object.values(listings).map(listing => (
-                    <div key={listing.id}>
+                    <div key={listing.id} onClick={() => goToSingleListing(listing)}>
                         <h3>{listing.address}, {listing.city}, {listing.state} {listing.zip}</h3>
                         <p>{listing.category}</p>
                         <p>{listing.description}</p>
