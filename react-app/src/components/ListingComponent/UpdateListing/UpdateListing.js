@@ -16,19 +16,13 @@ const UpdateListing = ({ restaurant }) => {
 
 
     return (
-        <fieldset>
-            <form>
-                <div>
-                    <label htmlFor='address'>Address</label>
-                    <input id='address'
-                        type='text'
-                        placeholder='Listing Address'
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                    />
-                </div>
-            </form>
-        </fieldset>
+        <div>
+            {
+                user.id === listing.user_id
+                &&
+                <button onClick={handleEdit}>Edit Listing</button>
+            }
+        </div>
     )
 }
 

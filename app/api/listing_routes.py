@@ -1,7 +1,7 @@
 from ctypes import addressof
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.forms import ListingForm
+from app.forms import ListingForm, UpdateListingForm
 from app.models import Listing, db
 
 listing_routes = Blueprint('listings', __name__)
@@ -46,6 +46,27 @@ def add_listing():
         return new_listing.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
+@listing_routes.route('', methods = ["PUT"])
+@login_required
+def edit_listing():
+    form = UpdateListingForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit:
+        listing = Listing.query.get(form.id.data)
+
+        # listing.user_id = form.user_id.data
+        listing.address = form.address.data
+        listing.city = form.city.data
+        listing.state = form.state.data
+        listing.zip = form.zip.data
+        listing.category = form.category.data
+        listing.description = form.description.data
+        listing.price = form.price.data
+        db.session.commit()
+        return listing.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}
+
+
 
 @listing_routes.route('/<id>', methods = ["DELETE"])
 @login_required
@@ -54,6 +75,3 @@ def delete_listing(id):
     db.session.delete(listing)
     db.session.commit()
     return ("Listing deleted!")
-
-# @listing_routes.route('/<id>', methods = ["PUT"])
-# @login_required

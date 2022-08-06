@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { getListingsThunk } from "../../../store/listing"
 import DeleteListing from '../DeleteListing/DeleteListing';
+import EditListing from '../EditListing/EditListing';
 
 const SingleListing = () => {
     const dispatch = useDispatch()
@@ -36,7 +37,9 @@ const SingleListing = () => {
                 {activeUser && activeUser.id === listing.user_id && (
                     <div>
                         <DeleteListing listing={listing}/>
+                        <EditListing listing={listing}/>
                     </div>
+
                 )}
             </div>
         </div>
