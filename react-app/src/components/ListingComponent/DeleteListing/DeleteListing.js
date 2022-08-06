@@ -7,7 +7,7 @@ const DeleteListing = ({ listing }) => {
     const history = useHistory();
     const user = useSelector(state => state?.session.user)
 
-    console.log("LISTING from DELETE Component",listing)
+    // console.log("LISTING from DELETE Component",listing)
 
     const handleDelete = async (e) => {
         e.preventDefault()
@@ -24,7 +24,5 @@ const DeleteListing = ({ listing }) => {
             }
         </div>
     )
-
-
 }
 export default DeleteListing
