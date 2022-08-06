@@ -45,3 +45,15 @@ def add_listing():
 
         return new_listing.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+@listing_routes.route('/<id>', methods = ["DELETE"])
+@login_required
+def delete_listing(id):
+    listing = Listing.query.get(id)
+    db.session.delete(listing)
+    db.session.commit()
+    return ("Listing deleted!")
+
+# @listing_routes.route('/<id>', methods = ["PUT"])
+# @login_required
