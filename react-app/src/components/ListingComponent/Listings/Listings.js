@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getListingsThunk } from '../../../store/listing';
+import { deleteListingThunk, getListingsThunk } from '../../../store/listing';
 
 const Listings = () => {
     const dispatch = useDispatch()
@@ -12,9 +12,12 @@ const Listings = () => {
 
     useEffect(() => {
         dispatch(getListingsThunk())
+
     }, [dispatch])
 
     // console.log("component+++++++",listings)
+
+    if (!listings) return ("loading")
 
     const goToSingleListing = (listing) => {
         history.push(`/listings/${listing.id}`)
