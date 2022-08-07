@@ -12,7 +12,7 @@ class Booking(db.Model):
     listing_id = db.Column(db.Integer, db.ForeignKey('listings.id'), nullable=False)
     start_date = db.Column(db.Date(), nullable=False)
     end_date = db.Column(db.Date(), nullable=False)
-    cost = db.Column(db.Float, nullable=False)
+    cost = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     user = db.relationship("User", back_populates="bookings")

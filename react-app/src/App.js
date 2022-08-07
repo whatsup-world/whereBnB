@@ -12,7 +12,7 @@ import { authenticate } from './store/session';
 import Listings from './components/ListingComponent/Listings/Listings';
 import ListingForm from './components/ListingComponent/NewListing/NewListing';
 import SingleListing from './components/ListingComponent/SingleListing/SingleListing';
-
+import Bookings from './components/BookingComponent/Bookings/Bookings';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -56,6 +56,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/newListing'>
           <ListingForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/bookings'>
+          <Bookings />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

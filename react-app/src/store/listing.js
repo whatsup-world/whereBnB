@@ -63,7 +63,7 @@ export const deleteListingThunk = (listingId) => async (dispatch) => {
 }
 
 export const editListingThunk = (updatedListingInfo) => async (dispatch) => {
-    console.log("editListingThunk++++++++++++", updatedListingInfo)
+    // console.log("editListingThunk++++++++++++", updatedListingInfo)
     const response = await fetch(`/api/listings`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },

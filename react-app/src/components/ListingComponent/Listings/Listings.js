@@ -12,7 +12,6 @@ const Listings = () => {
 
     useEffect(() => {
         dispatch(getListingsThunk())
-
     }, [dispatch])
 
     // console.log("component+++++++",listings)
