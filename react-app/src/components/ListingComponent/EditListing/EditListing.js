@@ -5,7 +5,7 @@ import { editListingThunk } from "../../../store/listing";
 
 const EditListing = ({ listing }) => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
     const user = useSelector(state => state?.session.user)
     const { listingId } = useParams()
 
@@ -33,7 +33,7 @@ const EditListing = ({ listing }) => {
             price,
         }
 
-        console.log("updatedListingInfo",updatedListingInfo)
+        // console.log("updatedListingInfo",updatedListingInfo)
         dispatch(editListingThunk(updatedListingInfo))
     }
 
