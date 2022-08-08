@@ -59,12 +59,12 @@ function App() {
         <ProtectedRoute path='/newListing'>
           <ListingForm />
         </ProtectedRoute>
-        <ProtectedRoute path='/bookings'>
-          <Bookings />
-        </ProtectedRoute>
         <Route path='/bookings/:bookingId' exact={true} >
           <SingleBooking />
         </Route>
+        <ProtectedRoute path='/bookings' exact={true}>
+          <Bookings />
+        </ProtectedRoute>
         <ProtectedRoute path='/newBooking'>
           <BookingForm />
         </ProtectedRoute>

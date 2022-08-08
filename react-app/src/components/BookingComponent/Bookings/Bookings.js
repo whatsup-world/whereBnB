@@ -14,11 +14,11 @@ const Bookings = () => {
     }, [dispatch])
 
     if (!bookings) return ("loading")
-    console.log(bookings)
+    // console.log(bookings)
 
     const goToSingleBooking = (booking) => {
-        console.log(booking)
-        // history.push(`/bookings/${booking.id}`)
+        // console.log(booking)
+        history.push(`/bookings/${booking.id}`)
     }
 
     return (
