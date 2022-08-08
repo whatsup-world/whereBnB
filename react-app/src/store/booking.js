@@ -20,9 +20,9 @@ const addBooking= (data) => ({
 //     data
 // })
 
-export const getBookingsThunk = () => async (dispatch) => {
+export const getBookingsThunk = (userId) => async (dispatch) => {
 
-    const response = await fetch('/api/bookings')
+    const response = await fetch(`/api/bookings/users/${userId}`)
 
     if (response.ok) {
         const data = await response.json();
@@ -33,14 +33,12 @@ export const getBookingsThunk = () => async (dispatch) => {
 }
 
 export const addBookingThunk = (payload) => async (dispatch) => {
-    console.log("+++++++++++++++addBookingThunk++++++++++++++", payload)
-
+    // console.log("+++++++++++++++addBookingThunk++++++++++++++", payload)
     const response = await fetch('/api/bookings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     })
-
 
     if (response.ok) {
         const data = await response.json();

@@ -35,18 +35,24 @@ const SingleListing = () => {
                 <p>{listing.description}</p>
                 <p>{listing.price}</p>
                 {/* {console.log(listing)} */}
+
+                {!activeUser &&
+                    (<div>login to discover more features!</div>)
+                }
+
                 {activeUser && activeUser.id === listing.user_id ?
 
-                (<div>
-                    <DeleteListing listing={listing}/>
-                    <EditListing listing={listing}/>
-                </div>)
-                :
-                (<div>
-                    <BookingForm listing={listing}/>
-                </div>)
+                    (<div>
+                        <DeleteListing listing={listing}/>
+                        <EditListing listing={listing}/>
+                    </div>)
+                    :
+                    (<div>
+                        <BookingForm listing={listing}/>
+                    </div>)
 
                 }
+
             {/* {return ("login to discover more features!")} */}
             </div>
         </div>
