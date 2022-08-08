@@ -13,6 +13,7 @@ import Listings from './components/ListingComponent/Listings/Listings';
 import ListingForm from './components/ListingComponent/NewListing/NewListing';
 import SingleListing from './components/ListingComponent/SingleListing/SingleListing';
 import Bookings from './components/BookingComponent/Bookings/Bookings';
+import BookingForm from './components/BookingComponent/NewBooking/NewBooking';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -60,6 +61,10 @@ function App() {
         <ProtectedRoute path='/bookings'>
           <Bookings />
         </ProtectedRoute>
+        <ProtectedRoute path='/newBooking'>
+          <BookingForm />
+        </ProtectedRoute>
+
       </Switch>
     </BrowserRouter>
   );
