@@ -13,6 +13,7 @@ import Listings from './components/ListingComponent/Listings/Listings';
 import ListingForm from './components/ListingComponent/NewListing/NewListing';
 import SingleListing from './components/ListingComponent/SingleListing/SingleListing';
 import Bookings from './components/BookingComponent/Bookings/Bookings';
+import SingleBooking from './components/BookingComponent/SingleBooking/SingleBooking';
 import BookingForm from './components/BookingComponent/NewBooking/NewBooking';
 
 function App() {
@@ -58,7 +59,10 @@ function App() {
         <ProtectedRoute path='/newListing'>
           <ListingForm />
         </ProtectedRoute>
-        <ProtectedRoute path='/bookings'>
+        <Route path='/bookings/:bookingId' exact={true} >
+          <SingleBooking />
+        </Route>
+        <ProtectedRoute path='/bookings' exact={true}>
           <Bookings />
         </ProtectedRoute>
         <ProtectedRoute path='/newBooking'>

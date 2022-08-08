@@ -13,8 +13,14 @@ const Bookings = () => {
         dispatch(getBookingsThunk(user.id))
     }, [dispatch])
 
-    console.log(bookings)
     if (!bookings) return ("loading")
+    // console.log(bookings)
+
+    const goToSingleBooking = (booking) => {
+        // console.log(booking)
+        history.push(`/bookings/${booking.id}`)
+    }
+
     return (
         <div>
             <h1>All Bookings</h1>
@@ -22,7 +28,7 @@ const Bookings = () => {
             {
                 // console.log(bookings)
                 Object.values(bookings).map(booking => (
-                    <div key={booking.id}>
+                    <div key={booking.id} onClick={() => goToSingleBooking(booking)}>
                         {/* <p>{booking.user_id}</p>
                         <p>{booking.listing_id}</p> */}
                         <p>{booking.start_date}</p>

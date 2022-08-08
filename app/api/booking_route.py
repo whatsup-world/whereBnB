@@ -16,7 +16,7 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@booking_routes.route('/users/<int:id>')
+@booking_routes.route('/users/<id>')
 @login_required
 def booking_get(id):
     bookings = Booking.query.filter(Booking.user_id == id).all()
@@ -43,3 +43,12 @@ def add_booking():
         db.session.commit()
         return new_booking.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+@booking_routes.route('/<id>', methods = ["DELETE"])
+@login_required
+def delete_booking(id):
+    booking = Booking.query.get(id)
+    db.session.delete(booking)
+    db.session.commit()
+    return ("booking deleted!")
