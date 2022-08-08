@@ -7,9 +7,10 @@ const Bookings = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const bookings = useSelector(state => state.booking)
+    const user = useSelector(state => state.session.user)
 
     useEffect(() => {
-        dispatch(getBookingsThunk())
+        dispatch(getBookingsThunk(user.id))
     }, [dispatch])
 
     console.log(bookings)
