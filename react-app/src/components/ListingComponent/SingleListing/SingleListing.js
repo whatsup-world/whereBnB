@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom"
 import { getListingsThunk } from "../../../store/listing"
 import DeleteListing from '../DeleteListing/DeleteListing';
 import EditListing from '../EditListing/EditListing';
+import BookingForm from '../../BookingComponent/NewBooking/NewBooking';
 
 const SingleListing = () => {
     const dispatch = useDispatch()
@@ -34,13 +35,19 @@ const SingleListing = () => {
                 <p>{listing.description}</p>
                 <p>{listing.price}</p>
                 {/* {console.log(listing)} */}
-                {activeUser && activeUser.id === listing.user_id && (
-                    <div>
-                        <DeleteListing listing={listing}/>
-                        <EditListing listing={listing}/>
-                    </div>
+                {activeUser && activeUser.id === listing.user_id ?
 
-                )}
+                (<div>
+                    <DeleteListing listing={listing}/>
+                    <EditListing listing={listing}/>
+                </div>)
+                :
+                (<div>
+                    <BookingForm listing={listing}/>
+                </div>)
+
+                }
+            {/* {return ("login to discover more features!")} */}
             </div>
         </div>
     )
