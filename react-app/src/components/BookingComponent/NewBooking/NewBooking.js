@@ -10,8 +10,8 @@ const BookingForm = ({ listing }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const userId = useSelector(state => state.session.user.id)
-
+    const userId = useSelector(state => state?.session.user.id)
+    console.log("new Booking component+++++++++++++++",userId)
     // console.log(listing)
 
     const [start_date, setStart_date] = useState(new Date())
