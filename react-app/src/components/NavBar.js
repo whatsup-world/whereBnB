@@ -40,6 +40,11 @@ const NavBar = () => {
             New Listing
           </NavLink>
         </li>
+        <li>
+          <NavLink to='/bookings' exact={true} activeClassName='active'>
+            My Bookings
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
