@@ -46,8 +46,8 @@ const BookingForm = ({ listing }) => {
         const payload = {
             user_id: userId,
             listing_id: listing.id,
-            start_date,
-            end_date,
+            start_date: start_date,
+            end_date: end_date,
             cost,
         }
         console.log(listing)
@@ -103,6 +103,7 @@ const BookingForm = ({ listing }) => {
                     placeholder='Cost'
                     value={cost}
                     onChange={(e) => setCost(e.target.value)}
+
                 />
             </div>
             <button>Submit</button>
