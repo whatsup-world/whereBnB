@@ -46,15 +46,15 @@ const BookingForm = ({ listing }) => {
         const payload = {
             user_id: userId,
             listing_id: listing.id,
-            start_date: start_date.toLocaleDateString(),
-            end_date: end_date.toLocaleDateString(),
+            start_date: start_date.toISOString().slice(0, 10),
+            end_date: end_date.toISOString().slice(0, 10),
             cost,
         }
         console.log(listing)
         console.log(payload)
 
         await dispatch(addBookingThunk(payload))
-        // history.push(`/bookings`)
+        history.push(`/bookings`)
     }
 
     return (
