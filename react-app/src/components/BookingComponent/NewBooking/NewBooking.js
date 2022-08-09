@@ -46,9 +46,9 @@ const BookingForm = ({ listing }) => {
         const payload = {
             user_id: userId,
             listing_id: listing.id,
-            start_date: start_date,
-            end_date: end_date,
-            cost: cost,
+            start_date,
+            end_date,
+            cost,
         }
         console.log(listing)
         console.log(payload)
