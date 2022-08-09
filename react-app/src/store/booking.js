@@ -34,7 +34,7 @@ export const getBookingsThunk = (userId) => async (dispatch) => {
 
 export const addBookingThunk = (payload) => async (dispatch) => {
     console.log("+++++++++++++++addBookingThunk++++++++++++++", payload)
-    const response = await fetch('/api/bookings', {
+    const response = await fetch('/api/bookings/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

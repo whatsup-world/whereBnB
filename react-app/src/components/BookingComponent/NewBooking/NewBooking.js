@@ -30,7 +30,7 @@ const BookingForm = ({ listing }) => {
         setEnd_date(ranges.selection.endDate)
     }
 
-    const convertDateStrToInt = (start_date, end_date) => {
+    const convertDateStrToInt = (date) => {
 
     }
 
@@ -46,8 +46,8 @@ const BookingForm = ({ listing }) => {
         const payload = {
             user_id: userId,
             listing_id: listing.id,
-            start_date: start_date,
-            end_date: end_date,
+            start_date: start_date.toLocaleDateString(),
+            end_date: end_date.toLocaleDateString(),
             cost,
         }
         console.log(listing)
