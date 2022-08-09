@@ -1,9 +1,10 @@
 import { useState } from 'react'
-
-
+import { Calendar, DateRange } from 'react-date-range'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { addBookingThunk } from '../../../store/booking'
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 
 const BookingForm = ({ listing }) => {
@@ -11,29 +12,49 @@ const BookingForm = ({ listing }) => {
     const history = useHistory();
 
     const userId = useSelector(state => state?.session.user.id)
-    console.log("new Booking component+++++++++++++++",userId)
+    // console.log("new Booking component+++++++++++++++",userId)
     // console.log(listing)
 
     const [start_date, setStart_date] = useState(new Date())
     const [end_date, setEnd_date] = useState(new Date())
     const [cost, setCost] = useState('')
 
+    const selectionRange = {
+        startDate: start_date,
+        endDate: end_date,
+        key: "selection"
+    }
 
+    const handleSelection = (ranges) =>{
+        setStart_date(ranges.selection.startDate);
+        setEnd_date(ranges.selection.endDate)
+    }
+
+    const convertDateStrToInt = (start_date, end_date) => {
+
+    }
+
+    const checkValidDates = () => {
+
+    }
 
     const handleSubmit = async(e) => {
         e.preventDefault()
 
+        // console.log(ranges)
+
         const payload = {
             user_id: userId,
             listing_id: listing.id,
-            start_date,
-            end_date,
+            start_date: start_date,
+            end_date: end_date,
             cost,
         }
         console.log(listing)
         console.log(payload)
-        await dispatch(addBookingThunk(payload))
-        history.push(`/bookings`)
+
+        // await dispatch(addBookingThunk(payload))
+        // history.push(`/bookings`)
     }
 
     return (
@@ -48,7 +69,7 @@ const BookingForm = ({ listing }) => {
                     onChange={(e) => setListing_id(e.target.value)}
                 />
             </div> */}
-            <div>
+            {/* <div>
                 <label htmlFor='start_date'>Start Date</label>
                 <input id='start_date'
                     type='date'
@@ -64,6 +85,15 @@ const BookingForm = ({ listing }) => {
                     placeholder='End Date'
                     value={end_date}
                     onChange={(e) => setEnd_date(e.target.value)}
+                />
+            </div> */}
+            <div>
+                <DateRange
+                    ranges={[selectionRange]}
+                    onChange={handleSelection}
+                    dateDisplayFormat={"yyyy/MM/dd"}
+                    minDate={new Date()}
+
                 />
             </div>
             <div>
