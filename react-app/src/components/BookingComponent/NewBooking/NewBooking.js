@@ -48,12 +48,12 @@ const BookingForm = ({ listing }) => {
             listing_id: listing.id,
             start_date: start_date,
             end_date: end_date,
-            cost,
+            cost: cost,
         }
         console.log(listing)
         console.log(payload)
 
-        // await dispatch(addBookingThunk(payload))
+        await dispatch(addBookingThunk(payload))
         // history.push(`/bookings`)
     }
 

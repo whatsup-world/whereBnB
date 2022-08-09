@@ -49,7 +49,7 @@ const SingleListing = () => {
 
                     }</div>)
                     :
-                    (<div>login to discover more features!</div>)
+                    (<div>Login to discover more features!</div>)
                 }
 
             </div>

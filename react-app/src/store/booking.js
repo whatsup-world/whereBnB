@@ -1,6 +1,6 @@
 const GET_BOOKINGS = 'bookings/GET_BOOKINGS';
 const ADD_BOOKING = 'bookings/ADD_BOOKING';
-// const GET_BOOKINGS = 'bookings/GET_BOOKINGS';
+const DELETE_BOOKING = 'bookings/DELETE_BOOKING';
 // const GET_BOOKINGS = 'bookings/GET_BOOKINGS';
 
 const getBookings= (data) => ({
@@ -11,10 +11,10 @@ const addBooking= (data) => ({
     type: ADD_BOOKING,
     data
 })
-// const getBookings= (data) => ({
-//     type: GET_BOOKINGS,
-//     data
-// })
+const deleteBooking= (data) => ({
+    type: DELETE_BOOKING,
+    data
+})
 // const getBookings= (data) => ({
 //     type: GET_BOOKINGS,
 //     data
@@ -33,7 +33,7 @@ export const getBookingsThunk = (userId) => async (dispatch) => {
 }
 
 export const addBookingThunk = (payload) => async (dispatch) => {
-    // console.log("+++++++++++++++addBookingThunk++++++++++++++", payload)
+    console.log("+++++++++++++++addBookingThunk++++++++++++++", payload)
     const response = await fetch('/api/bookings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -45,6 +45,17 @@ export const addBookingThunk = (payload) => async (dispatch) => {
         dispatch(addBooking(data));
         return data
     }
+}
+
+export const deleteBookingThunk = (bookingId) => async (dispatch) => {
+    const response = await fetch(`/api/bookings/${bookingId}`, {
+        method: 'DELETE',
+    })
+
+    if (response.ok) {
+        dispatch(deleteBooking(bookingId));
+    }
+    return
 }
 
 
@@ -63,6 +74,11 @@ const bookingsReducer = (state = initialState, action) => {
             let addState = {}
             addState = { ...state, [action.data.id]: action.data}
             return addState
+
+        case DELETE_BOOKING:
+            let deleteState = {...state}
+            delete deleteState[action.data.id]
+            return deleteState
 
 
         default:
