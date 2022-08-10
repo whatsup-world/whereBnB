@@ -21,6 +21,7 @@ class Listing(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
+            "listing_owner": self.user.to_dict(),
             "address": self.address,
             "city": self.city,
             "state": self.state,
@@ -28,4 +29,5 @@ class Listing(db.Model):
             "category": self.category,
             "description": self.description,
             "price": self.price,
+            "bookings": [booking.to_dict() for booking in self.bookings]
         }
