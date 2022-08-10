@@ -36,9 +36,9 @@ const Bookings = () => {
                     <div key={booking.id} onClick={() => goToSingleBooking(booking)}>
                         {/* <p>{booking.user_id}</p>
                         <p>{booking.listing_id}</p> */}
-                        <p>{booking.start_date}</p>
+                        <p>{booking.start_date.slice(0, 16)}</p>
                         {/* <p>{booking_start_date}</p> */}
-                        <p>{booking.end_date}</p>
+                        <p>{booking.end_date.slice(0, 16)}</p>
                         <p>{booking.cost}</p>
 
                     </div>

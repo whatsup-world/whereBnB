@@ -13,11 +13,12 @@ const BookingForm = ({ listing }) => {
 
     const userId = useSelector(state => state?.session.user.id)
     // console.log("new Booking component+++++++++++++++",userId)
-    // console.log(listing)
 
     const [start_date, setStart_date] = useState(new Date())
     const [end_date, setEnd_date] = useState(new Date())
     const [cost, setCost] = useState('')
+    const [errors, setErrors] = useState([]);
+
 
     const selectionRange = {
         startDate: start_date,
@@ -41,6 +42,17 @@ const BookingForm = ({ listing }) => {
     const handleSubmit = async(e) => {
         e.preventDefault()
 
+        // console.log(listing.bookings[0].start_date)
+        // console.log(start_date)
+        // console.log(listing.bookings[0].start_date < start_date)
+        // console.log(inRange(start_date, listing.bookings[0].start_date, listing.bookings[0].end_date))
+
+        // listing.bookings.map(existBooking =>
+        //     existBooking.start_date <= start_date <= existBooking.end_date
+
+
+
+        // )
         // console.log(ranges)
 
         const payload = {
@@ -50,8 +62,8 @@ const BookingForm = ({ listing }) => {
             end_date: end_date.toISOString().slice(0, 10),
             cost,
         }
-        console.log(listing)
-        console.log(payload)
+        // console.log(listing)
+        // console.log(payload)
 
         await dispatch(addBookingThunk(payload))
         history.push(`/bookings`)
@@ -59,6 +71,15 @@ const BookingForm = ({ listing }) => {
 
     return (
         <fieldset>
+        <div>
+            {errors.length > 0 && (
+                <ul>
+                    {errors.map((error, idx) =>
+                        <li key={idx}>{error}</li>
+                    )}
+                </ul>
+            )}
+        </div>
         <form onSubmit={handleSubmit}>
             {/* <div>
                 <label htmlFor='listing_id'>Listing Id</label>

@@ -27,8 +27,8 @@ const SingleBooking = () => {
         <div>
             <h1>Booking Detail</h1>
             <div key={booking.id}>
-                <h3>{booking.start_date}</h3>
-                <h3>{booking.end_date}</h3>
+                <h3>{booking.start_date.slice(0, 16)}</h3>
+                <h3>{booking.end_date.slice(0, 16)}</h3>
                 <h3>{booking.cost}</h3>
                 {activeUser ?
                     (<div>{activeUser.id === booking.user_id ?
