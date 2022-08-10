@@ -11,3 +11,12 @@ class BookingForm(FlaskForm):
     end_date = DateField('End Date', validators)
     cost = IntegerField('Cost', validators)
     # "cost need to be decimal"
+
+class UpdateBookingForm(FlaskForm):
+    id = IntegerField("Booking Id", validators)
+    user_id = IntegerField('UserId', validators)
+    listing_id = IntegerField('ListingId', validators)
+    start_date = DateField('Start Date', validators)
+    end_date = DateField('End Date', validators)
+    cost = IntegerField('Cost', validators)
+    # "cost need to be decimal"

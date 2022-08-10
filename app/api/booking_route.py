@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.forms import BookingForm
+from app.forms import BookingForm, UpdateBookingForm
+# from app.forms.booking_form import
 from app.models import Booking, db
 
 booking_routes = Blueprint('bookings', __name__)
@@ -21,6 +22,12 @@ def validation_errors_to_error_messages(validation_errors):
 def booking_get(id):
     bookings = Booking.query.filter(Booking.user_id == id).all()
     return {'Bookings': [booking.to_dict() for booking in bookings]}
+
+# @booking_routes.route('/listings/<id>')
+# @login_required
+# def booking_get_from_listing(id):
+#     bookings = Booking.query.filter(Booking.listing_id == id).all()
+#     return {'Bookings': [booking.to_dict() for booking in bookings]}
 
 
 @booking_routes.route('', methods = ['POST'])
@@ -43,6 +50,22 @@ def add_booking():
         db.session.commit()
         return new_booking.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@booking_routes.route('', methods = ["PUT"])
+@login_required
+def edit_booking():
+    form = UpdateBookingForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit:
+        booking = Booking.query.get(form.id.data)
+
+        booking.start_date = form.start_date.data
+        booking.end_date = form.end_date.data
+        booking.cost = form.cost.data
+
+        db.session.commit()
+        return booking.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
 @booking_routes.route('/<id>', methods = ["DELETE"])
