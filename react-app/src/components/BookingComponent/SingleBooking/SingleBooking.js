@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { getBookingsThunk } from '../../../store/booking';
 import DeleteBooking from '../DeleteBooking/DeleteBooking';
+import EditBooking from '../EditBooking/EditBooking';
 
 const SingleBooking = () => {
     const dispatch = useDispatch()
@@ -10,13 +11,16 @@ const SingleBooking = () => {
     const { bookingId } = useParams()
 
     const activeUser = useSelector(state => state?.session.user)
-    const booking = useSelector(state => state.booking[bookingId])
-    console.log("SingleBooking++++++++++++++++", booking)
+    const booking = useSelector(state => state?.booking[bookingId])
+
+    // const booking_start_date = booking.start_date
+    // console.log(booking_start_date)
+    // console.log("SingleBooking++++++++++++++++", booking)
 
 
     useEffect(() => {
         dispatch(getBookingsThunk(activeUser.id))
-    }, [dispatch, activeUser])
+    }, [dispatch, activeUser, bookingId])
 
     if (!booking) return ("loading")
     return (
@@ -30,6 +34,7 @@ const SingleBooking = () => {
                     (<div>{activeUser.id === booking.user_id ?
                         (<div>
                             <DeleteBooking booking={booking}/>
+                            <EditBooking booking={booking}/>
                         </div>)
                         :
                         (<div>You don't have access!</div>)

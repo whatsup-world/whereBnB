@@ -1,7 +1,7 @@
 const GET_BOOKINGS = 'bookings/GET_BOOKINGS';
 const ADD_BOOKING = 'bookings/ADD_BOOKING';
 const DELETE_BOOKING = 'bookings/DELETE_BOOKING';
-// const GET_BOOKINGS = 'bookings/GET_BOOKINGS';
+const EDIT_BOOKING = 'bookings/EDIT_BOOKING';
 
 const getBookings= (data) => ({
     type: GET_BOOKINGS,
@@ -15,10 +15,10 @@ const deleteBooking= (data) => ({
     type: DELETE_BOOKING,
     data
 })
-// const getBookings= (data) => ({
-//     type: GET_BOOKINGS,
-//     data
-// })
+const editBooking= (data) => ({
+    type: EDIT_BOOKING,
+    data
+})
 
 export const getBookingsThunk = (userId) => async (dispatch) => {
 
@@ -45,6 +45,21 @@ export const addBookingThunk = (payload) => async (dispatch) => {
         dispatch(addBooking(data));
         return data
     }
+}
+
+export const editBookingThunk = (updatedBookingInfo) => async (dispatch) => {
+    console.log("editBookingThunk++++++++++++",updatedBookingInfo)
+    const response = await fetch(`/api/bookings`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedBookingInfo)
+    })
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(editBooking(data));
+    }
+
 }
 
 export const deleteBookingThunk = (bookingId) => async (dispatch) => {
@@ -80,6 +95,9 @@ const bookingsReducer = (state = initialState, action) => {
             delete deleteState[action.data.id]
             return deleteState
 
+        case EDIT_BOOKING:
+            let editState = {...state}
+            editState[action.data.id] = action.data
 
         default:
             return state;

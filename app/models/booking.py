@@ -25,8 +25,10 @@ class Booking(db.Model):
             "user_id": self.user_id,
             "booking_owner": self.user.to_dict(),
             "listing_id": self.listing_id,
+            # "listing booked": [self.listings.to_dict()],
             "start_date": self.start_date,
             "end_date": self.end_date,
             "cost": self.cost,
             "created_at": self.created_at,
+            # "listings": [listing.to_dict() for listing in self.listings]
         }

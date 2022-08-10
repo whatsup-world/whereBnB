@@ -8,7 +8,7 @@ import BookingForm from '../../BookingComponent/NewBooking/NewBooking';
 
 const SingleListing = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
+    // const history = useHistory()
 
     const activeUser = useSelector(state => state?.session.user)
     // console.log(activeUser)

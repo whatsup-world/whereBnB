@@ -51,21 +51,21 @@ def add_booking():
         return new_booking.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-# @booking_routes.route('/<id>', methods = ["PUT"])
-# @login_required
-# def edit_booking():
-#     form = UpdateBookingForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit:
-#         booking = Booking.query.get(form.id.data)
+@booking_routes.route('', methods = ["PUT"])
+@login_required
+def edit_booking():
+    form = UpdateBookingForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit:
+        booking = Booking.query.get(form.id.data)
 
-#         booking.start_date = form.start_date.data
-#         booking.end_date = form.end_date.data
-#         booking.cost = form.cost.data
+        booking.start_date = form.start_date.data
+        booking.end_date = form.end_date.data
+        booking.cost = form.cost.data
 
-#         db.session.commit()
-#         return booking.to_dict()
-#     return {'errors': validation_errors_to_error_messages(form.errors)}
+        db.session.commit()
+        return booking.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
 @booking_routes.route('/<id>', methods = ["DELETE"])

@@ -130,3 +130,4 @@ each of the following variables:
 
 | npm install react-date-range|
 | npm install |
+| npm install date-fns --save|
