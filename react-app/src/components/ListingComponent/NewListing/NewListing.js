@@ -40,7 +40,7 @@ const ListingForm = () => {
 
     return (
         <fieldset>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="listing-form-container">
                 <div>
                     <label htmlFor='address'>Address</label>
                     <input id='address'

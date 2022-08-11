@@ -43,7 +43,7 @@ const EditListing = ({ listing }) => {
         user.id === listing.user_id
         &&
         <fieldset>
-            <form>
+            <form className="listing-form-container">
                 <div>
                     <label htmlFor='address'>Address</label>
                     <input id='address'

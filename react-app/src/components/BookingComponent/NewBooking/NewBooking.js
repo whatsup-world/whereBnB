@@ -5,7 +5,10 @@ import { useHistory } from 'react-router-dom'
 import { addBookingThunk } from '../../../store/booking'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-
+import moment from 'moment';
+import {extendMoment} from "moment-range"
+import { addYears, differenceInDays } from 'date-fns'
+import { add } from 'date-fns/esm'
 
 const BookingForm = ({ listing }) => {
     const dispatch = useDispatch();
@@ -18,7 +21,6 @@ const BookingForm = ({ listing }) => {
     const [end_date, setEnd_date] = useState(new Date())
     const [cost, setCost] = useState('')
     const [errors, setErrors] = useState([]);
-
 
     const selectionRange = {
         startDate: start_date,
@@ -35,15 +37,29 @@ const BookingForm = ({ listing }) => {
 
     }
 
-    const checkValidDates = () => {
+    const blockDate= () => {
 
     }
+
+    // let bookedDates = [];
+    // listing.bookings.forEach(booking => {
+    //     console.log(moment(booking.start_date).diff(moment(booking.end_date), "days"))
+    //     // const range = moment.range(moment(booking.start_date), moment(booking.end_date))
+    //     // const dates = Array.from(range.by('day'))
+    //     // bookedDates.concat(dates)
+    // })
+
+    // console.log(bookedDates)
+    // const excludedDates = [];
+    // bookedDates.forEach((date) => {
+    //     excludedDates.push(new Date(date));
+    // });
 
     const handleSubmit = async(e) => {
         e.preventDefault()
 
-        // console.log(listing.bookings[0].start_date)
-        // console.log(start_date)
+        console.log(listing.bookings[0].start_date)
+        console.log(start_date)
         // console.log(listing.bookings[0].start_date < start_date)
         // console.log(inRange(start_date, listing.bookings[0].start_date, listing.bookings[0].end_date))
 
@@ -108,13 +124,16 @@ const BookingForm = ({ listing }) => {
                     onChange={(e) => setEnd_date(e.target.value)}
                 />
             </div> */}
-            <div>
+            <div className='calendar'>
                 <DateRange
                     ranges={[selectionRange]}
+
                     onChange={handleSelection}
                     dateDisplayFormat={"yyyy/MM/dd"}
                     minDate={new Date()}
 
+                    // excludeDates={excludedDates}
+                    // disabledDates={listing.bookings.map(booking => booking.start_date)}
                 />
             </div>
             <div>

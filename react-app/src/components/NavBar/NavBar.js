@@ -1,11 +1,12 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import LogoutButton from '../auth/LogoutButton';
+import "./NavBar.css"
 
 const NavBar = () => {
   return (
-    <nav>
+    <nav id='navnar-container'>
       <ul>
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>

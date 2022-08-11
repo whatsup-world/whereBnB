@@ -64,7 +64,7 @@ const EditBooking = ({ booking }) => {
         <div>
         <fieldset>
             <form onSubmit={handleSubmit}>
-            <div>
+            <div className="calendar">
                 <DateRange
                     ranges={[selectionRange]}
                     onChange={handleSelection}

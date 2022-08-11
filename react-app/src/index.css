@@ -1,1 +1,50 @@
-/* TODO Add site wide styles */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: auto;
+    font-size: 18px;
+    font-family: 'Raleway', sans-serif;
+}
+
+button:not(.rdrDay):not(.rdrDayDisabled):not(.rdrNextPrevButton) {
+    background-color: rgb(13, 117, 89);
+    color: white;
+    border-radius: 50px;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif;
+    margin: 5px;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    font-family: 'Raleway', sans-serif;
+    color: black;
+}
+
+a:hover {
+    font-weight: bolder;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+.listing-form-container div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px
+}
+
+
+div h1 {
+    text-align: center;
+}
