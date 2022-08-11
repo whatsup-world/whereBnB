@@ -128,6 +128,8 @@ each of the following variables:
 | `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
 | `heroku run -a <app name>` | Run a command from within the deployed container on Heroku |
 
-| npm install react-date-range|
+| npm install react-date-range |
 | npm install |
-| npm install date-fns --save|
+| npm install date-fns --save |
+| npm install moment --save |
+| npm install moment-range|

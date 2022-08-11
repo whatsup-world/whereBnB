@@ -1,0 +1,17 @@
+#navnar-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: relative;
+    /* border: red 1px solid; */
+}
+
+#navbar-container > ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+li {
+    list-style-type: none;
+}
