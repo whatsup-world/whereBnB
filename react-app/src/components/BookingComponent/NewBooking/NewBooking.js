@@ -42,8 +42,17 @@ const BookingForm = ({ listing }) => {
     }
 
     // let bookedDates = [];
+    // console.log(listing.bookings)
     // listing.bookings.forEach(booking => {
-    //     console.log(moment(booking.start_date).isRange(moment(booking.end_date), "days"))
+    //     // console.log(moment(booking.start_date).isSame(moment(booking.end_date), "days"))
+    //     console.log(moment(start_date))
+    //     console.log(moment(booking.start_date))
+    //     console.log(moment(booking.end_date))
+
+    //     // console.log(moment(booking.start_date).add(1, 'd'))
+    //     console.log(moment(start_date).isBetween(moment(booking.start_date),moment(booking.end_date)))
+    //     console.log(moment(end_date).isBetween(moment(booking.start_date),moment(booking.end_date)))
+
     //     // const range = moment.range(moment(booking.start_date), moment(booking.end_date))
     //     // const dates = Array.from(range.by('day'))
     //     // bookedDates.concat(dates)
@@ -133,7 +142,9 @@ const BookingForm = ({ listing }) => {
                     minDate={new Date()}
 
                     // excludeDates={excludedDates}
-                    // disabledDates={listing.bookings.map(booking => booking.start_date)}
+                    // disabledDates={listing.bookings.map(booking =>
+                    //     booking.start_date
+                    // )}
                 />
             </div>
             <div>

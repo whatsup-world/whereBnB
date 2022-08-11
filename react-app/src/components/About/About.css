@@ -1,0 +1,7 @@
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: center;
+}
