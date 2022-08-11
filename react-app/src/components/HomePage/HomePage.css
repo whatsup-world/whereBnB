@@ -1,0 +1,8 @@
+#home-page-container {
+    width: 100%;
+}
+#home-page-container img{
+    width: 100%;
+    /* object-fit: cover;
+    object-position: center; */
+}
