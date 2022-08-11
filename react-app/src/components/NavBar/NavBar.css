@@ -3,7 +3,8 @@
     padding: 0;
     width: 100%;
     position: relative;
-    /* border: red 1px solid; */
+    border-bottom: grey 1.5px solid;
+    /* box-shadow: ; */
 }
 
 #navbar-container > ul {
@@ -14,4 +15,28 @@
 
 li {
     list-style-type: none;
+}
+
+.dropdown-menu {
+    display: block;
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: 0 1px 2px 2px rgba(143, 143, 143, 0.414);
+    right: 20px;
+    top: 62px;
+    width: 250px;
+    height: 160px;
+    align-items: center;
+}
+
+.dropdown-menu ul {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dropdown-menu ul li {
+    margin: 12px;
 }

@@ -43,7 +43,7 @@ const BookingForm = ({ listing }) => {
 
     // let bookedDates = [];
     // listing.bookings.forEach(booking => {
-    //     console.log(moment(booking.start_date).diff(moment(booking.end_date), "days"))
+    //     console.log(moment(booking.start_date).isRange(moment(booking.end_date), "days"))
     //     // const range = moment.range(moment(booking.start_date), moment(booking.end_date))
     //     // const dates = Array.from(range.by('day'))
     //     // bookedDates.concat(dates)

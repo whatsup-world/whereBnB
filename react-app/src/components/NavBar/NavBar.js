@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
@@ -6,21 +6,56 @@ import "./NavBar.css"
 
 const NavBar = () => {
   const user = useSelector(state => state?.session.user)
+  const [showMenu, setShowMenu] = useState(false)
+
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  }
+
+  useEffect(() => {
+    if (!showMenu) return
+
+    const closeMenu = () => {
+      setShowMenu(false)
+    }
+
+    document?.addEventListener('click', closeMenu)
+
+    return () => document?.removeEventListener("click", closeMenu)
+  }, [showMenu])
+
 
   let sessionLinks;
   if (user) {
     sessionLinks = (
       <>
-        <li>
-          <NavLink to='/newListing' exact={true} activeClassName='active'>
-            New Listing
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/bookings' exact={true} activeClassName='active'>
-            My Bookings
-          </NavLink>
-        </li>
+
+
+        <div>
+          <li onClick={openMenu}>Hi, {user.username}</li>
+          {showMenu && (
+            <div className='dropdown-menu'>
+              <ul>
+                <li>
+                  <NavLink to='/newListing' exact={true} activeClassName='active'>
+                    New Listing
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to='/bookings' exact={true} activeClassName='active'>
+                    My Bookings
+                  </NavLink>
+                </li>
+                <li>
+                  <LogoutButton />
+                </li>
+
+              </ul>
+            </div>
+          )}
+        </div>
+
       </>
     )
   } else {
@@ -53,9 +88,6 @@ const NavBar = () => {
             Users
           </NavLink>
         </li> */}
-        <li>
-          <LogoutButton />
-        </li>
         <li>
           <NavLink to='/listings' exact={true} activeClassName='active'>
             All Listings

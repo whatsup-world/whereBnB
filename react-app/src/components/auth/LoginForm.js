@@ -10,6 +10,10 @@ const LoginForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const demoLogin = async(e) => {
+    return await dispatch(login("demo@aa.io", "password"))
+  }
+
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -31,7 +35,7 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <form onSubmit={onLogin} className="listing-form-container">
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -58,6 +62,7 @@ const LoginForm = () => {
         />
         <button type='submit'>Login</button>
       </div>
+      <button onClick={demoLogin}>Demo Login</button>
     </form>
   );
 };
