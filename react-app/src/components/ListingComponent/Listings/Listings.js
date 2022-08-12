@@ -29,7 +29,7 @@ const Listings = () => {
             {
                 Object.values(listings).map(listing => (
                     <div key={listing.id} onClick={() => goToSingleListing(listing)} id="listing-container">
-                        <h4>{listing.address}, {listing.city}, {listing.state} {listing.zip}</h4>
+                        <h4>{listing.address}, {listing.city}, {listing.state}</h4>
                         <p>{listing.category}</p>
                         {/* <p>{listing.description}</p> */}
                         <p>${listing.price} night</p>

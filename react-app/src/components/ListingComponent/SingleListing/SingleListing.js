@@ -33,7 +33,7 @@ const SingleListing = () => {
                 <h4>{listing.address}, {listing.city}, {listing.state} {listing.zip}</h4>
                 <p>{listing.category}</p>
                 <p>{listing.description}</p>
-                <p>{listing.price}</p>
+                <p>${listing.price} night</p>
 
                 {activeUser ?
                     (<div>{activeUser.id === listing.user_id ?
