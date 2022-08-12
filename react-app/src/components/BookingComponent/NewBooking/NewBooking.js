@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Calendar, DateRange } from 'react-date-range'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -19,8 +19,9 @@ const BookingForm = ({ listing }) => {
 
     const [start_date, setStart_date] = useState(new Date())
     const [end_date, setEnd_date] = useState(new Date())
-    const [cost, setCost] = useState('')
+    const [cost, setCost] = useState(0)
     const [errors, setErrors] = useState([]);
+    const [submitEnabled, setSubmitEnabled] = useState(false)
 
     const selectionRange = {
         startDate: start_date,
@@ -41,17 +42,47 @@ const BookingForm = ({ listing }) => {
 
     }
 
+    useEffect(() => {
+        let errorArr = []
+        listing.bookings.map(booking => {
+            if (moment(start_date).isBetween(moment(booking.start_date),moment(booking.end_date)
+                ||
+                moment(end_date).isBetween(moment(booking.start_date),moment(booking.end_date)))) {
+                    errorArr.push("Please select another date period");
+
+                }
+            // if () {
+            //     errorArr.push("Check-out date is not valid")
+            // }
+
+
+        })
+
+        let totalCost = 0;
+        // console.log(moment(end_date).diff(moment(start_date), 'days'))
+        totalCost = moment(end_date).diff(moment(start_date), 'days') * listing.price
+
+        if (errorArr.length) {
+            setSubmitEnabled(false)
+        } else {
+            setSubmitEnabled(true)
+        }
+
+        setCost(totalCost)
+        setErrors(errorArr)
+    },[start_date, end_date])
+
     // let bookedDates = [];
     // console.log(listing.bookings)
     // listing.bookings.forEach(booking => {
     //     // console.log(moment(booking.start_date).isSame(moment(booking.end_date), "days"))
-    //     console.log(moment(start_date))
+    //     // console.log(moment(start_date))
     //     console.log(moment(booking.start_date))
     //     console.log(moment(booking.end_date))
 
     //     // console.log(moment(booking.start_date).add(1, 'd'))
-    //     console.log(moment(start_date).isBetween(moment(booking.start_date),moment(booking.end_date)))
-    //     console.log(moment(end_date).isBetween(moment(booking.start_date),moment(booking.end_date)))
+    //     // console.log(moment(start_date).isBetween(moment(booking.start_date),moment(booking.end_date)))
+    //     // console.log(moment(end_date).isBetween(moment(booking.start_date),moment(booking.end_date)))
 
     //     // const range = moment.range(moment(booking.start_date), moment(booking.end_date))
     //     // const dates = Array.from(range.by('day'))
@@ -96,16 +127,16 @@ const BookingForm = ({ listing }) => {
 
     return (
         <fieldset>
-        <div>
-            {errors.length > 0 && (
-                <ul>
-                    {errors.map((error, idx) =>
-                        <li key={idx}>{error}</li>
-                    )}
-                </ul>
-            )}
-        </div>
         <form onSubmit={handleSubmit}>
+            <div className="error-messages">
+                {errors.length > 0 && (
+                    <ul>
+                        {errors.map((error, idx) =>
+                            <li key={idx}>{error}</li>
+                        )}
+                    </ul>
+                )}
+            </div>
             {/* <div>
                 <label htmlFor='listing_id'>Listing Id</label>
                 <input id='listing_id'
@@ -147,15 +178,18 @@ const BookingForm = ({ listing }) => {
                     // )}
                 />
             </div>
-            <div>
+            {/* <div>
                 <label htmlFor='cost'>Cost</label>
                 <input id='cost'
                     type='number'
                     placeholder='Cost'
                     value={cost}
                     onChange={(e) => setCost(e.target.value)}
-
+                    required={true}
                 />
+            </div> */}
+            <div>
+                Total cost: ${cost}
             </div>
             <button>Submit</button>
         </form>
