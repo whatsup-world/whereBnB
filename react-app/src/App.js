@@ -16,6 +16,8 @@ import Bookings from './components/BookingComponent/Bookings/Bookings';
 import SingleBooking from './components/BookingComponent/SingleBooking/SingleBooking';
 import BookingForm from './components/BookingComponent/NewBooking/NewBooking';
 import Footer from './components/Footer/Footer';
+import About from './components/About/About';
+import HomePage from './components/HomePage/HomePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,7 +51,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <HomePage />
         </Route>
         <Route path='/listings' exact={true} >
           <Listings />
@@ -69,6 +71,9 @@ function App() {
         <ProtectedRoute path='/newBooking'>
           <BookingForm />
         </ProtectedRoute>
+        <Route exact path="/about">
+          <About />
+        </Route>
       </Switch>
       <Footer />
     </BrowserRouter>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { deleteListingThunk, getListingsThunk } from '../../../store/listing';
+import "./Listings.css"
 
 const Listings = () => {
     const dispatch = useDispatch()
@@ -23,15 +24,15 @@ const Listings = () => {
     }
 
     return (
-        <div>
+        <div className='listings'>
             <h1>All Listings</h1>
             {
                 Object.values(listings).map(listing => (
-                    <div key={listing.id} onClick={() => goToSingleListing(listing)}>
-                        <h3>{listing.address}, {listing.city}, {listing.state} {listing.zip}</h3>
+                    <div key={listing.id} onClick={() => goToSingleListing(listing)} id="listing-container">
+                        <h4>{listing.address}, {listing.city}, {listing.state}</h4>
                         <p>{listing.category}</p>
-                        <p>{listing.description}</p>
-                        <p>{listing.price}</p>
+                        {/* <p>{listing.description}</p> */}
+                        <p>${listing.price} night</p>
                     </div>
                     // {console.log(listing)}
                 ))

@@ -1,21 +1,22 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import './Footer.css'
 
 const Footer= () => {
     return (
         <div id='footer-container'>
-            {/* <ul>
-                <li>
+            <ul>
+                {/* <li>
                     <Link to='/technology'>
                         technology
                     </Link>
-                </li>
+                </li> */}
                 <li>
                     <Link to='/about'>
                         about
                     </Link>
                 </li>
-            </ul> */}
+            </ul>
         </div>
     )
 }

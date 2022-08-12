@@ -27,13 +27,13 @@ const SingleListing = () => {
 
 
     return (
-        <div>
+        <div className="listings">
             <h1>Single Listing</h1>
-            <div key={listing.id}>
-                <h3>{listing.address}, {listing.city}, {listing.state} {listing.zip}</h3>
+            <div key={listing.id} >
+                <h4>{listing.address}, {listing.city}, {listing.state} {listing.zip}</h4>
                 <p>{listing.category}</p>
                 <p>{listing.description}</p>
-                <p>{listing.price}</p>
+                <p>${listing.price} night</p>
 
                 {activeUser ?
                     (<div>{activeUser.id === listing.user_id ?

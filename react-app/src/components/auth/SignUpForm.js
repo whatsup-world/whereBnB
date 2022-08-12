@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -12,12 +12,26 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    let errorArr = [];
+    if (username.length < 3) {errorArr.push("Username cannot be less than 3 letters")}
+    if (!email.includes("@") || !email.includes(".")) {errorArr.push("Please enter a valid email")}
+    if (password !== repeatPassword) {errorArr.push("Passwords must match")}
+
+    setErrors(errorArr)
+  },[username, email, password, repeatPassword])
+
+
   const onSignUp = async (e) => {
     e.preventDefault();
+
+
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
+      } else {
+        errors.push(['Passwords must match'])
       }
     }
   };
@@ -46,7 +60,7 @@ const SignUpForm = () => {
     <form onSubmit={onSignUp} className="listing-form-container">
       <div>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div key={ind} className="error-messages">{error}</div>
         ))}
       </div>
       <div>
@@ -56,6 +70,7 @@ const SignUpForm = () => {
           name='username'
           onChange={updateUsername}
           value={username}
+          required={true}
         ></input>
       </div>
       <div>
@@ -65,6 +80,7 @@ const SignUpForm = () => {
           name='email'
           onChange={updateEmail}
           value={email}
+          required={true}
         ></input>
       </div>
       <div>
@@ -74,6 +90,7 @@ const SignUpForm = () => {
           name='password'
           onChange={updatePassword}
           value={password}
+          required={true}
         ></input>
       </div>
       <div>

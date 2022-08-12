@@ -48,3 +48,7 @@ form {
 div h1 {
     text-align: center;
 }
+
+.error-messages {
+    color: red;
+}

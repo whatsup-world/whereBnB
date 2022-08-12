@@ -1,0 +1,19 @@
+#home-page-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around
+}
+
+#home-page-container img{
+    width: 100%;
+}
+
+#home-welcome {
+    position: absolute;
+    z-index: 1;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    top: 45%;
+    color: rgb(255, 121, 3);
+}
