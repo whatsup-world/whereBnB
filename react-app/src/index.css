@@ -29,12 +29,19 @@ a:hover {
     font-weight: bolder;
 }
 
+.listings {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
 form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center
 }
+
 
 .listing-form-container div{
     display: flex;
