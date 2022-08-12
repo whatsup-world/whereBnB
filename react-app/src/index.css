@@ -19,6 +19,10 @@ button:not(.rdrDay):not(.rdrDayDisabled):not(.rdrNextPrevButton) {
     cursor: pointer;
 }
 
+button:not(.rdrDay):not(.rdrDayDisabled):not(.rdrNextPrevButton):disabled {
+    background-color: rgba(13, 117, 89, 0.467);
+}
+
 a {
     text-decoration: none;
     font-family: 'Raleway', sans-serif;

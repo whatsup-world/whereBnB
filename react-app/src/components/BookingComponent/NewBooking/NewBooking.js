@@ -9,6 +9,7 @@ import moment from 'moment';
 import {extendMoment} from "moment-range"
 import { addYears, differenceInDays } from 'date-fns'
 import { add } from 'date-fns/esm'
+import "./NewBooking.css"
 
 const BookingForm = ({ listing }) => {
     const dispatch = useDispatch();
@@ -191,7 +192,7 @@ const BookingForm = ({ listing }) => {
             <div>
                 Total cost: ${cost}
             </div>
-            <button>Submit</button>
+            <button disabled={!!errors.length} id='confirm-button'>Submit</button>
         </form>
         </fieldset>
     )
