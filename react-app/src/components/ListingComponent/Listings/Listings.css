@@ -17,3 +17,21 @@
     cursor: pointer;
 
 }
+
+#address-line {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    /* background-color: blue; */
+}
+
+#address-line-left {
+    display: flex;
+    left: 0;
+}
+
+#address-line-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center
+}

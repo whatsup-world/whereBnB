@@ -1,0 +1,15 @@
+.listing-info {
+    word-wrap: break-word;
+}
+.listing-info > p{
+    word-wrap: break-word;
+    /* color: brown; */
+}
+
+/* .listings > *{
+    display: flex;
+    flex-wrap: wrap;
+    overflow: scroll;
+    max-width: fit-content;
+    word-wrap: break-word;
+} */

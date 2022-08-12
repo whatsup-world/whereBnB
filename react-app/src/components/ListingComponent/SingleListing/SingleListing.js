@@ -5,6 +5,7 @@ import { getListingsThunk } from "../../../store/listing"
 import DeleteListing from '../DeleteListing/DeleteListing';
 import EditListing from '../EditListing/EditListing';
 import BookingForm from '../../BookingComponent/NewBooking/NewBooking';
+import "./SingleListing.css"
 
 const SingleListing = () => {
     const dispatch = useDispatch()
@@ -29,7 +30,7 @@ const SingleListing = () => {
     return (
         <div className="listings">
             <h1>Single Listing</h1>
-            <div key={listing.id} >
+            <div key={listing.id} className="listing-info">
                 <h4>{listing.address}, {listing.city}, {listing.state} {listing.zip}</h4>
                 <p>{listing.category}</p>
                 <p>{listing.description}</p>

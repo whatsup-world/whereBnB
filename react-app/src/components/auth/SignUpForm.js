@@ -15,7 +15,7 @@ const SignUpForm = () => {
   useEffect(() => {
     let errorArr = [];
     if (username.length < 3) {errorArr.push("Username cannot be less than 3 letters")}
-    if (!email.includes("@") || !email.includes(".")) {errorArr.push("Please enter a valid email")}
+    if (!/\S+@\S+\.\S+/.test(email)) {errorArr.push("Please enter a valid email")}
     if (password !== repeatPassword) {errorArr.push("Passwords must match")}
 
     setErrors(errorArr)
@@ -30,8 +30,6 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
-      } else {
-        errors.push(['Passwords must match'])
       }
     }
   };

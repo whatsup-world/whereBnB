@@ -67,8 +67,8 @@ const BookingForm = ({ listing }) => {
     const handleSubmit = async(e) => {
         e.preventDefault()
 
-        console.log(listing.bookings[0].start_date)
-        console.log(start_date)
+        // console.log(listing.bookings[0].start_date)
+        // console.log(start_date)
         // console.log(listing.bookings[0].start_date < start_date)
         // console.log(inRange(start_date, listing.bookings[0].start_date, listing.bookings[0].end_date))
 
