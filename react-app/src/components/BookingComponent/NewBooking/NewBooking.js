@@ -52,12 +52,10 @@ const BookingForm = ({ listing }) => {
                     errorArr.push("Please select another date period");
 
                 }
-            // if () {
-            //     errorArr.push("Check-out date is not valid")
-            // }
-
-
-        })
+            })
+            if (moment(start_date).isSame(moment(end_date))) {
+                errorArr.push("Check-in & check-out date cannot be same")
+            }
 
         let totalCost = 0;
         // console.log(moment(end_date).diff(moment(start_date), 'days'))

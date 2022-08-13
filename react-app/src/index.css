@@ -61,5 +61,6 @@ div h1 {
 }
 
 .error-messages {
+    font-size: smaller;
     color: red;
 }
