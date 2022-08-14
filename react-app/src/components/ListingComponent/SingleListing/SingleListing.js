@@ -31,6 +31,7 @@ const SingleListing = () => {
         <div className="listings">
             <h1>Single Listing</h1>
             <div key={listing.id} className="listing-info">
+                <img src={listing.cover_img} />
                 <h4>{listing.address}, {listing.city}, {listing.state} {listing.zip}</h4>
                 <p>{listing.category}</p>
                 <p>{listing.description}</p>

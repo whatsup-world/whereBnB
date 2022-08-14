@@ -17,6 +17,7 @@ const ListingForm = () => {
     const [category, setCategory] = useState('')
     const [price, setPrice] = useState('')
     const [errors, setErrors] = useState([])
+    const [coverImg, setCoverImg] = useState('')
 
     useEffect(() => {
         let errorArr = [];
@@ -27,10 +28,11 @@ const ListingForm = () => {
         if (!category) {errorArr.push("Please select a category")}
         if (description.length < 5 || description.length > 200) {errorArr.push("Description length has to between 5 and 200")}
         if (price < 1 || price > 6000) {errorArr.push("Price range has to between $1 and $6000")}
+        if (!coverImg) {errorArr.push("Please provide a valid image url")}
 
 
         setErrors(errorArr)
-    },[address, city, state, zip, description, category, price])
+    },[address, city, state, zip, description, category, price, coverImg])
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -60,6 +62,16 @@ const ListingForm = () => {
                         <div key={ind} className="error-messages">{error}</div>
                     ))}
                 </div>
+                {/* <div>
+                    <label htmlFor='cover_img'>Image</label>
+                    <input id='cover_img'
+                        type='text'
+                        placeholder='Listing cover_img'
+                        value={coverImg}
+                        onChange={(e) => setCoverImg(e.target.value)}
+                        required={true}
+                    />
+                </div> */}
                 <div>
                     <label htmlFor='address'>Address</label>
                     <input id='address'
