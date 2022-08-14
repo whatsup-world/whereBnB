@@ -6,9 +6,9 @@ import { addBookingThunk } from '../../../store/booking'
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import moment from 'moment';
-import {extendMoment} from "moment-range"
-import { addYears, differenceInDays } from 'date-fns'
-import { add } from 'date-fns/esm'
+// import {extendMoment} from "moment-range"
+// import { addYears, differenceInDays } from 'date-fns'
+// import { add } from 'date-fns/esm'
 import "./NewBooking.css"
 
 const BookingForm = ({ listing }) => {
@@ -33,14 +33,6 @@ const BookingForm = ({ listing }) => {
     const handleSelection = (ranges) =>{
         setStart_date(ranges.selection.startDate);
         setEnd_date(ranges.selection.endDate)
-    }
-
-    const convertDateStrToInt = (date) => {
-
-    }
-
-    const blockDate= () => {
-
     }
 
     useEffect(() => {
@@ -104,19 +96,6 @@ const BookingForm = ({ listing }) => {
     const handleSubmit = async(e) => {
         e.preventDefault()
 
-        // console.log(listing.bookings[0].start_date)
-        // console.log(start_date)
-        // console.log(listing.bookings[0].start_date < start_date)
-        // console.log(inRange(start_date, listing.bookings[0].start_date, listing.bookings[0].end_date))
-
-        // listing.bookings.map(existBooking =>
-        //     existBooking.start_date <= start_date <= existBooking.end_date
-
-
-
-        // )
-        // console.log(ranges)
-
         const payload = {
             user_id: userId,
             listing_id: listing.id,
@@ -173,7 +152,6 @@ const BookingForm = ({ listing }) => {
             <div className='calendar'>
                 <DateRange
                     ranges={[selectionRange]}
-
                     onChange={handleSelection}
                     dateDisplayFormat={"yyyy/MM/dd"}
                     minDate={new Date()}
