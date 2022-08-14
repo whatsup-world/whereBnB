@@ -15,7 +15,7 @@ const SingleListing = () => {
     // console.log(activeUser)
     const { listingId } = useParams()
     // console.log(listingId)
-
+    // console.log(listingId)
     // const listing = listings.listingId
     const listing = useSelector(state => state?.listing[listingId])
     // console.log(listing)
