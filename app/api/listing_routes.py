@@ -1,5 +1,5 @@
 from ctypes import addressof
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 from flask_login import login_required
 from app.forms import ListingForm, UpdateListingForm
 from app.models import Listing, db
@@ -38,6 +38,7 @@ def add_listing():
             category = form.data["category"],
             description = form.data["description"],
             price = form.data["price"],
+            cover_img = form.data["cover_img"]
         )
 
         db.session.add(new_listing)
@@ -62,6 +63,7 @@ def edit_listing():
         listing.category = form.category.data
         listing.description = form.description.data
         listing.price = form.price.data
+        listing.cover_img = form.cover_img.data
         db.session.commit()
         return listing.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}

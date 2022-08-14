@@ -13,6 +13,7 @@ class Listing(db.Model):
     category = db.Column(db.String(50))
     description = db.Column(db.String(1000))
     price = db.Column(db.Integer, nullable=False)
+    cover_img = db.Column(db.String(255), nullable=False)
 
     user = db.relationship("User", back_populates="listings")
     bookings = db.relationship("Booking", back_populates="listings")
@@ -29,5 +30,6 @@ class Listing(db.Model):
             "category": self.category,
             "description": self.description,
             "price": self.price,
+            "cover_img": self.cover_img,
             "bookings": [booking.to_dict() for booking in self.bookings]
         }
