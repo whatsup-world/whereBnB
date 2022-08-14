@@ -17,20 +17,22 @@ const EditListing = ({ listing }) => {
     const [category, setCategory] = useState('')
     const [price, setPrice] = useState('')
     const [errors, setErrors] = useState([])
+    const [cover_img, setCover_img] = useState('')
 
     useEffect(() => {
         let errorArr = [];
+        if (!/^https?:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)\??.*$/.test(cover_img)) {errorArr.push('Please enter a valid image url')}
         if (address.length < 4 || address.length > 15 ) {errorArr.push("Address characters has to between 4 and 15")}
         if (city.length < 3 || city.length > 17) {errorArr.push("City characters has to between 3 and 17")}
         if (!state) {errorArr.push("Please select a state")}
         if (zip.length < 5 || zip.length > 6) {errorArr.push("Zipcode length has to between 5 and 6")}
         if (!category) {errorArr.push("Please select a category")}
         if (description.length < 5 || description.length > 200) {errorArr.push("Description length has to between 5 and 200")}
-        if (price < 1 || price > 6000) {errorArr.push("Price range has to between $1 and $6000")}
+        if (price < 1 || price > 60000) {errorArr.push("Price range has to between $1 and $60000")}
 
 
         setErrors(errorArr)
-    },[address, city, state, zip, description, category, price])
+    },[address, city, state, zip, description, category, price, cover_img])
 
 
     const handleEdit = async(e) => {
@@ -39,6 +41,7 @@ const EditListing = ({ listing }) => {
         const updatedListingInfo = {
             id: listingId,
             user_id: user.id,
+            cover_img,
             address,
             city,
             state,
@@ -65,10 +68,23 @@ const EditListing = ({ listing }) => {
                     ))}
                 </div>
                 <div>
+                    <h3>Listing Edit Form</h3>
+                </div>
+                <div>
+                    <label htmlFor='cover_img'>Cover Image</label>
+                    <input id='cover_img'
+                        type='text'
+                        placeholder='e.g., https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                        value={cover_img}
+                        onChange={(e) => setCover_img(e.target.value)}
+                        required={true}
+                    />
+                </div>
+                <div>
                     <label htmlFor='address'>Address</label>
                     <input id='address'
                         type='text'
-                        placeholder='Listing Address'
+                        placeholder='e.g., 123 Main St'
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         required={true}
@@ -78,7 +94,7 @@ const EditListing = ({ listing }) => {
                     <label htmlFor='city'>City</label>
                     <input id='city'
                         type='text'
-                        placeholder='Listing City'
+                        placeholder='e.g., Los Angeles'
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                         required={true}
@@ -159,7 +175,7 @@ const EditListing = ({ listing }) => {
                     <label htmlFor='zip'>Zip Code</label>
                     <input id='zip'
                         type='number'
-                        placeholder='Listing Zip'
+                        placeholder='e.g., 12345'
                         value={zip}
                         onChange={(e) => setZip(e.target.value)}
                         required={true}
@@ -169,7 +185,7 @@ const EditListing = ({ listing }) => {
                     <label htmlFor='description'>Description</label>
                     <textarea id='description'
                         type='textarea'
-                        placeholder='Listing Description'
+                        placeholder='Briefly tell us about this listing'
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         required={true}
@@ -202,13 +218,13 @@ const EditListing = ({ listing }) => {
                     <label htmlFor='price'>Price per night</label>
                     <input id='price'
                         type='number'
-                        placeholder='Listing Price'
+                        placeholder='e.g., 299'
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                         required={true}
                     />
                 </div>
-                <button>Confirm Edit</button>
+                <button disabled={!!errors.length} id='confirm-button'>Confirm Edit</button>
 
             </form>
         </fieldset>
