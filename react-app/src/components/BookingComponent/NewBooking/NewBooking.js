@@ -46,9 +46,16 @@ const BookingForm = ({ listing }) => {
     useEffect(() => {
         let errorArr = []
         listing.bookings.map(booking => {
-            if (moment(start_date).isBetween(moment(booking.start_date),moment(booking.end_date)
+            if (moment(start_date).isBetween(moment(booking.start_date),moment(booking.end_date))
                 ||
-                moment(end_date).isBetween(moment(booking.start_date),moment(booking.end_date)))) {
+                moment(end_date).isBetween(moment(booking.start_date),moment(booking.end_date))
+                ||
+                moment(booking.start_date).isBetween(moment(start_date),moment(end_date))
+                ||
+                moment(booking.end_date).isBetween(moment(start_date),moment(end_date))
+
+                )
+                {
                     errorArr.push("Please select another date period");
 
                 }

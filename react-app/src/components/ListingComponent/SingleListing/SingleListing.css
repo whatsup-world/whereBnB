@@ -6,6 +6,11 @@
     /* color: brown; */
 }
 
+.listing-info img {
+    max-width: 700px;
+    border-radius: 15px;
+}
+
 /* .listings > *{
     display: flex;
     flex-wrap: wrap;
