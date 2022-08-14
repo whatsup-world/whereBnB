@@ -78,7 +78,7 @@ const EditBooking = ({ booking, listing }) => {
         setEnd_date(ranges.selection.endDate)
     }
 
-    console.log(listing.bookings)
+    console.log(listing?.bookings)
     // useEffect(() => {
     //     // dispatch(getListingsThunk())
     //     let errorArr = []
