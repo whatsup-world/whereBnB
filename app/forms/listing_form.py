@@ -13,6 +13,7 @@ class ListingForm(FlaskForm):
     category = StringField('Category')
     description = TextAreaField('Description', validators)
     price = IntegerField('Price', validators)
+    cover_img = StringField('Cover_img', validators)
 
 class UpdateListingForm(FlaskForm):
     id = IntegerField("Listing Id", validators)
@@ -24,3 +25,4 @@ class UpdateListingForm(FlaskForm):
     category = StringField('Category')
     description = TextAreaField('Description', validators)
     price = IntegerField('Price', validators)
+    cover_img = StringField('Cover_img', validators)
