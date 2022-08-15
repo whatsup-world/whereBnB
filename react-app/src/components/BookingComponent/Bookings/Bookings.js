@@ -12,7 +12,7 @@ const Bookings = () => {
     const user = useSelector(state => state.session.user)
     const bookings = useSelector(state => state.booking)
 
-    console.log(bookings)
+    // console.log(bookings)
 
     useEffect(() => {
         dispatch(getBookingsThunk(user.id))

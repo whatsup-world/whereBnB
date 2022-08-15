@@ -66,7 +66,7 @@ const EditBooking = ({ booking, listing }) => {
     }, [start_date, end_date])
 
     if (!listing) return ("loading")
-    console.log(listing)
+    // console.log(listing)
 
     const selectionRange = {
         startDate: start_date,
@@ -78,7 +78,7 @@ const EditBooking = ({ booking, listing }) => {
         setEnd_date(ranges.selection.endDate)
     }
 
-    console.log(listing?.bookings)
+    // console.log(listing?.bookings)
     // useEffect(() => {
     //     // dispatch(getListingsThunk())
     //     let errorArr = []
@@ -155,7 +155,6 @@ const EditBooking = ({ booking, listing }) => {
                     onChange={handleSelection}
                     dateDisplayFormat={"yyyy/MM/dd"}
                     minDate={new Date()}
-
                 />
             </div>
             {/* <div>

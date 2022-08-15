@@ -9,26 +9,27 @@ const EditListing = ({ listing }) => {
     const user = useSelector(state => state?.session.user)
     const { listingId } = useParams()
 
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [zip, setZip] = useState('')
-    const [description, setDescription] = useState('')
-    const [category, setCategory] = useState('')
-    const [price, setPrice] = useState('')
+    const [address, setAddress] = useState(listing?.address)
+    const [city, setCity] = useState(listing?.city)
+    const [state, setState] = useState(listing?.state)
+    const [zip, setZip] = useState(listing?.zip)
+    const [description, setDescription] = useState(listing?.description)
+    const [category, setCategory] = useState(listing?.category)
+    const [price, setPrice] = useState("")
     const [errors, setErrors] = useState([])
-    const [cover_img, setCover_img] = useState('')
+    const [cover_img, setCover_img] = useState(listing?.cover_img)
 
     useEffect(() => {
         let errorArr = [];
         if (!/^https?:\/\/.+\.(jpg|jpeg|png|webp|avif|gif|svg)\??.*$/.test(cover_img)) {errorArr.push('Please enter a valid image url')}
-        if (address.length < 4 || address.length > 15 ) {errorArr.push("Address characters has to between 4 and 15")}
+        if (address.length < 4 || address.length > 25 ) {errorArr.push("Address characters has to between 4 and 25")}
         if (city.length < 3 || city.length > 17) {errorArr.push("City characters has to between 3 and 17")}
         if (!state) {errorArr.push("Please select a state")}
         if (zip.length < 5 || zip.length > 6) {errorArr.push("Zipcode length has to between 5 and 6")}
         if (!category) {errorArr.push("Please select a category")}
         if (description.length < 5 || description.length > 200) {errorArr.push("Description length has to between 5 and 200")}
         if (price < 1 || price > 60000) {errorArr.push("Price range has to between $1 and $60000")}
+        if (price?.includes(".") || price?.includes("e")) {errorArr.push("Price range has to be an integer")}
 
 
         setErrors(errorArr)
@@ -218,6 +219,7 @@ const EditListing = ({ listing }) => {
                     <label htmlFor='price'>Price per night</label>
                     <input id='price'
                         type='number'
+                        step="1"
                         placeholder='e.g., 299'
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
