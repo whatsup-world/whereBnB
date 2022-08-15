@@ -9,15 +9,15 @@ const EditListing = ({ listing }) => {
     const user = useSelector(state => state?.session.user)
     const { listingId } = useParams()
 
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [zip, setZip] = useState('')
-    const [description, setDescription] = useState('')
-    const [category, setCategory] = useState('')
-    const [price, setPrice] = useState('')
+    const [address, setAddress] = useState(listing?.address)
+    const [city, setCity] = useState(listing?.city)
+    const [state, setState] = useState(listing?.state)
+    const [zip, setZip] = useState(listing?.zip)
+    const [description, setDescription] = useState(listing?.description)
+    const [category, setCategory] = useState(listing?.category)
+    const [price, setPrice] = useState("")
     const [errors, setErrors] = useState([])
-    const [cover_img, setCover_img] = useState('')
+    const [cover_img, setCover_img] = useState(listing?.cover_img)
 
     useEffect(() => {
         let errorArr = [];
@@ -29,7 +29,7 @@ const EditListing = ({ listing }) => {
         if (!category) {errorArr.push("Please select a category")}
         if (description.length < 5 || description.length > 200) {errorArr.push("Description length has to between 5 and 200")}
         if (price < 1 || price > 60000) {errorArr.push("Price range has to between $1 and $60000")}
-        if (price.includes(".") || price.includes("e")) {errorArr.push("Price range has to be an integer")}
+        if (price?.includes(".") || price?.includes("e")) {errorArr.push("Price range has to be an integer")}
 
 
         setErrors(errorArr)

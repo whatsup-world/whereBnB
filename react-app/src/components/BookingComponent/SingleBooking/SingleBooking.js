@@ -18,7 +18,7 @@ const SingleBooking = () => {
     const listing = useSelector(state => state?.listing[listingId])
 
     // const booking_start_date = booking.start_date
-    console.log(listing)
+    // console.log(listing)
     // console.log("SingleBooking++++++++++++++++", booking)
 
 

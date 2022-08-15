@@ -5,3 +5,11 @@
     align-content: flex-start;
     align-items: center;
 }
+
+#home-welcome {
+    margin: 0 60px 20px 60px;
+}
+
+#home-welcome p{
+    margin-bottom: 100px;
+}
