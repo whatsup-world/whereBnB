@@ -16,7 +16,7 @@ class Listing(db.Model):
     cover_img = db.Column(db.String(255), nullable=False)
 
     user = db.relationship("User", back_populates="listings")
-    bookings = db.relationship("Booking", back_populates="listings")
+    bookings = db.relationship("Booking", back_populates="listings", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
