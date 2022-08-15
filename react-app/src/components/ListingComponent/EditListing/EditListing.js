@@ -74,7 +74,7 @@ const EditListing = ({ listing }) => {
                     <label htmlFor='cover_img'>Cover Image</label>
                     <input id='cover_img'
                         type='text'
-                        placeholder='e.g., https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                        placeholder='e.g., https://a0.muscache.com/im/pictures/6efab021-4b8b-4f6b-9bac-953eada81314.jpg?im_w=1440'
                         value={cover_img}
                         onChange={(e) => setCover_img(e.target.value)}
                         required={true}
