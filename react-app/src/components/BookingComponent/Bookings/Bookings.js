@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getBookingsThunk } from '../../../store/booking';
 // import { format } from 'date-fns';
+import "./Bookings.css"
 
 const Bookings = () => {
     const dispatch = useDispatch()
@@ -26,20 +27,17 @@ const Bookings = () => {
     }
 
     return (
-        <div>
+        <div className='listings'>
             <h1>All Bookings</h1>
 
             {
                 // console.log(bookings)
                 Object.values(bookings).map(booking => (
 
-                    <div key={booking.id} onClick={() => goToSingleBooking(booking)}>
-                        {/* <p>{booking.user_id}</p>
-                        <p>{booking.listing_id}</p> */}
-                        <p>{booking.start_date.slice(0, 16)}</p>
-                        {/* <p>{booking_start_date}</p> */}
-                        <p>{booking.end_date.slice(0, 16)}</p>
-                        <p>{booking.cost}</p>
+                    <div key={booking.id} onClick={() => goToSingleBooking(booking)} id="booking-container">
+                        <p>Check in: {booking.start_date.slice(0, 16)}</p>
+                        <p>Check out: {booking.end_date.slice(0, 16)}</p>
+                        <p>You paid: ${booking.cost}</p>
 
                     </div>
                 ))

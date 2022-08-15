@@ -5,6 +5,7 @@ import { getBookingsThunk } from '../../../store/booking';
 import { getListingsThunk } from '../../../store/listing';
 import DeleteBooking from '../DeleteBooking/DeleteBooking';
 import EditBooking from '../EditBooking/EditBooking';
+import "./SingleBooking.css"
 
 const SingleBooking = () => {
     const dispatch = useDispatch()
@@ -17,7 +18,7 @@ const SingleBooking = () => {
     const listing = useSelector(state => state?.listing[listingId])
 
     // const booking_start_date = booking.start_date
-    // console.log(booking_start_date)
+    console.log(listing)
     // console.log("SingleBooking++++++++++++++++", booking)
 
 
@@ -28,12 +29,17 @@ const SingleBooking = () => {
 
     if (!booking) return ("loading")
     return (
-        <div>
+        <div className='booking'>
             <h1>Booking Detail</h1>
-            <div key={booking.id}>
-                <h3>{booking.start_date.slice(0, 16)}</h3>
-                <h3>{booking.end_date.slice(0, 16)}</h3>
-                <h3>{booking.cost}</h3>
+            <div key={booking.id} id="single-booking-container">
+                <img src={listing?.cover_img} className="cover-img" width="400px" height="270px"/>
+                <div id='address-line'>
+                    <div id='address-line-left'><h4>{listing?.address}, {listing?.city}, {listing?.state}, {listing?.zip}</h4></div>
+                    {/* <div id='address-line-right'><p>hosted by&nbsp;</p> <h4>{listing?.listing_owner.username}</h4></div> */}
+                </div>
+                <h5>Check in: {booking.start_date.slice(0, 16)}</h5>
+                <h5>Check out: {booking.end_date.slice(0, 16)}</h5>
+                <h4>You paid: ${booking.cost}</h4>
                 {activeUser ?
                     (<div>{activeUser.id === booking.user_id ?
                         (<div>
