@@ -7,7 +7,7 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
-button:not(.rdrDay):not(.rdrDayDisabled):not(.rdrNextPrevButton) {
+button:not(.rdrDay):not(.rdrDayDisabled):not(.rdrNextPrevButton):not(#nav-login) {
     background-color: rgb(13, 117, 89);
     color: white;
     border-radius: 50px;
@@ -19,7 +19,7 @@ button:not(.rdrDay):not(.rdrDayDisabled):not(.rdrNextPrevButton) {
     cursor: pointer;
 }
 
-button:not(.rdrDay):not(.rdrDayDisabled):not(.rdrNextPrevButton):disabled {
+button:not(.rdrDay):not(.rdrDayDisabled):not(.rdrNextPrevButton):not(#nav-login):disabled {
     background-color: rgba(13, 117, 89, 0.467);
 }
 
