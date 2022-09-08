@@ -67,8 +67,7 @@ const NavBar = () => {
           Login
 
         </NavLink> */}
-          <LoginFormModal />
-        {/* <LoginFormModal /> */}
+        <LoginFormModal />
       </li>
       <li>
         <NavLink to='/sign-up' exact={true} activeClassName='active'>
