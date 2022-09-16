@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .listings import seed_listings, undo_listings
 from .bookings import seed_bookings, undo_bookings
+from .likes import seed_likes, undo_likes
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -15,6 +16,7 @@ def seed():
     # Add other seed functions here
     seed_listings()
     seed_bookings()
+    seed_likes()
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
@@ -23,3 +25,4 @@ def undo():
     # Add other undo functions here
     undo_listings()
     undo_bookings()
+    undo_likes()
