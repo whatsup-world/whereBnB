@@ -41,8 +41,11 @@ def like_listing():
 
 
 @like_routes.route('')
-@login_required
+# @login_required
 
 def like_get():
-    likes = Like.query.all()
-    return {'Likes': [like.to_dict() for like in likes]}
+    user_likes = Like.query.filter(Like.user_id == current_user.id).all()
+    liked_listing = []
+    for like in user_likes:
+        liked_listing.append(Listing.query.get(like.listing_id))
+    return {'liked_listings': [listing.to_dict() for listing in liked_listing]}
