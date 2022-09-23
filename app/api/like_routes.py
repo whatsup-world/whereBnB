@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Listing, User, Like
 
@@ -12,7 +12,7 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f'*{error}')
     return errorMessages
 
 
@@ -45,7 +45,7 @@ def like_listing():
 
 def like_get():
     user_likes = Like.query.filter(Like.user_id == current_user.id).all()
-    liked_listing = []
+    liked_listings = []
     for like in user_likes:
-        liked_listing.append(Listing.query.get(like.listing_id))
-    return {'liked_listings': [listing.to_dict() for listing in liked_listing]}
+        liked_listings.append(Listing.query.get(like.listing_id))
+    return {'liked_listings': [listing.to_dict() for listing in liked_listings]}

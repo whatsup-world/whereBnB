@@ -8,7 +8,7 @@ class Like(db.Model):
     listing_id = db.Column(db.Integer, db.ForeignKey('listings.id'), nullable=False)
 
     user = db.relationship("User")
-    listings = db.relationship("Listing")
+    listing = db.relationship("Listing")
 
     def to_dict(self):
         return {

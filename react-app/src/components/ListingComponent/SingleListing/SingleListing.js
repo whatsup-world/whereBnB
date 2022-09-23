@@ -18,7 +18,8 @@ const SingleListing = () => {
     // console.log(listingId)
     // const listing = listings.listingId
     const listing = useSelector(state => state?.listing[listingId])
-    // console.log(listing)
+    const like = useSelector(state => state?.like)
+    console.log(like)
 
     useEffect(() => {
         dispatch(getListingsThunk())
