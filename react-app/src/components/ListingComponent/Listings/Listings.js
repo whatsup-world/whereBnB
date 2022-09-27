@@ -38,9 +38,9 @@ const Listings = () => {
                         <div id='image-container'><img src={listing.cover_img} className="cover-img"/></div>
                         <div id='address-line'>
                         { likes?
-                            <button className='listing-liked' type='button' onClick={handleLike}><i class="fa-solid fa-heart fa-lg"></i></button>
+                            <button className='listing-liked' type='button' onClick={handleLike}><i className="fa-solid fa-heart fa-lg"></i></button>
                             :
-                            <button className='listing-unliked' type='button' onClick={handleLike}><i class="fa-regular fa-heart fa-lg"></i></button>
+                            <button className='listing-unliked' type='button' onClick={handleLike}><i className="fa-regular fa-heart fa-lg"></i></button>
                         }
                             <div id='address-line-left'><h4>{listing.city}, {listing.state}</h4></div>
                             <div id='address-line-right'><p>hosted by&nbsp;</p> <h4>{listing.listing_owner.username}</h4></div>
