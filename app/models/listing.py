@@ -17,6 +17,7 @@ class Listing(db.Model):
 
     user = db.relationship("User", back_populates="listings")
     bookings = db.relationship("Booking", back_populates="listings", cascade="all, delete-orphan")
+    listing_images = db.relationship("Listing_Image", back_populates="listings", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
