@@ -32,5 +32,6 @@ class Listing(db.Model):
             "description": self.description,
             "price": self.price,
             "cover_img": self.cover_img,
-            "bookings": [booking.to_dict() for booking in self.bookings]
+            "bookings": [booking.to_dict() for booking in self.bookings],
+            "listing_images": [listing_image.to_dict() for listing_image in self.listing_images]
         }
