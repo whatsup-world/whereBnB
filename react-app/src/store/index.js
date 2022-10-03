@@ -4,9 +4,10 @@ import session from './session';
 import listing from './listing';
 import booking from './booking';
 import like from './like';
+import image from './image';
 
 const rootReducer = combineReducers({
-  session, listing, booking, like
+  session, listing, booking, like, image
 });
 
 

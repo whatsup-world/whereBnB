@@ -35,6 +35,7 @@ def get_listing_images(id):
 def add_listing_images():
     form = ListingImageForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+
     if form.validate_on_submit():
         if 'image_url' in request.files:
             image = request.files["image_url"]
