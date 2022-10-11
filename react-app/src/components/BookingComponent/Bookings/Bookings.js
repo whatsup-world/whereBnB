@@ -9,11 +9,10 @@ import "./Bookings.css"
 const Bookings = () => {
     const dispatch = useDispatch()
     const history = useHistory()
-    const user = useSelector(state => state.session.user)
-    const bookings = useSelector(state => state.booking)
+    const user = useSelector(state => state?.session.user)
+    const bookings = useSelector(state => state?.booking)
 
-    // console.log(bookings)
-
+    // console.log(user.id)
     useEffect(() => {
         dispatch(getBookingsThunk(user.id))
     }, [dispatch])

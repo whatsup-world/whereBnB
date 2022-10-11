@@ -18,7 +18,7 @@ import BookingForm from './components/BookingComponent/NewBooking/NewBooking';
 import Footer from './components/Footer/Footer';
 import About from './components/About/About';
 import HomePage from './components/HomePage/HomePage';
-import Images from './components/ImageComponent/Images/Images';
+import Images from './components/ImageComponent/Images/Images/Images';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
