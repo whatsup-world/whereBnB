@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { getListingsThunk } from "../../../store/listing"
+import { getImagesThunk } from '../../../store/image';
 import DeleteListing from '../DeleteListing/DeleteListing';
 import EditListing from '../EditListing/EditListing';
 import BookingForm from '../../BookingComponent/NewBooking/NewBooking';
+import Images from '../../ImageComponent/Images/Images/Images';
 import "./SingleListing.css"
+import { getBookingsThunk } from '../../../store/booking';
+import { getLikesThunk } from '../../../store/like';
 
 const SingleListing = () => {
     const dispatch = useDispatch()
@@ -19,13 +23,21 @@ const SingleListing = () => {
     // const listing = listings.listingId
     const listing = useSelector(state => state?.listing[listingId])
     const like = useSelector(state => state?.like)
+    const images = useSelector(state => state?.image)
+    const imagesArr = Object.values(images)
     console.log(like)
+    console.log(imagesArr)
+
 
     useEffect(() => {
         dispatch(getListingsThunk())
+            .then(() => dispatch(getImagesThunk(parseInt(listingId))))
+
     }, [dispatch])
 
     if (!listing) return ("loading")
+    if (!images) return ("loading")
+
 
 
     return (
@@ -33,6 +45,12 @@ const SingleListing = () => {
             <h1>Single Listing</h1>
             <div key={listing.id} className="listing-info">
                 <img src={listing.cover_img} className="cover-img"/>
+                {/* {imagesArr && imagesArr.map(image) => {
+                    return (
+                        <src=`${image.image_url}` img/>
+                    )
+                }} */}
+                <Images listing={listing}/>
                 <h4>{listing.address}, {listing.city}, {listing.state} {listing.zip}</h4>
                 <p>{listing.category}</p>
                 <p>{listing.description}</p>

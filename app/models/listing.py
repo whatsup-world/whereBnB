@@ -17,6 +17,7 @@ class Listing(db.Model):
 
     user = db.relationship("User", back_populates="listings")
     bookings = db.relationship("Booking", back_populates="listings", cascade="all, delete-orphan")
+    listing_images = db.relationship("Listing_Image", back_populates="listings", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
@@ -31,5 +32,6 @@ class Listing(db.Model):
             "description": self.description,
             "price": self.price,
             "cover_img": self.cover_img,
-            "bookings": [booking.to_dict() for booking in self.bookings]
+            "bookings": [booking.to_dict() for booking in self.bookings],
+            "listing_images": [listing_image.to_dict() for listing_image in self.listing_images]
         }

@@ -1,10 +1,11 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from app.forms import BookingForm, UpdateBookingForm
-# from app.forms.booking_form import
+
 from app.models import Booking, db
 
-booking_routes = Blueprint('bookings', __name__)
+booking_routes = Blueprint("bookings", __name__)
+
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -13,15 +14,16 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f'{field} : {error}')
+            errorMessages.append(f"{field} : {error}")
     return errorMessages
 
 
-@booking_routes.route('/users/<id>')
+@booking_routes.route("/users/<id>")
 @login_required
 def booking_get(id):
     bookings = Booking.query.filter(Booking.user_id == id).all()
-    return {'Bookings': [booking.to_dict() for booking in bookings]}
+    return {"Bookings": [booking.to_dict() for booking in bookings]}
+
 
 # @booking_routes.route('/listings/<id>')
 # @login_required
@@ -30,32 +32,33 @@ def booking_get(id):
 #     return {'Bookings': [booking.to_dict() for booking in bookings]}
 
 
-@booking_routes.route('', methods = ['POST'])
+@booking_routes.route("", methods=["POST"])
 @login_required
 def add_booking():
     form = BookingForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
         print("Hello from booking route")
         new_booking = Booking(
-            user_id = form.data["user_id"],
-            listing_id = form.data["listing_id"],
-            start_date = form.data["start_date"],
-            end_date = form.data["end_date"],
-            cost = form.data["cost"]
+            user_id=form.data["user_id"],
+            listing_id=form.data["listing_id"],
+            start_date=form.data["start_date"],
+            end_date=form.data["end_date"],
+            cost=form.data["cost"],
         )
 
         db.session.add(new_booking)
         db.session.commit()
         return new_booking.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
 
-@booking_routes.route('', methods = ["PUT"])
+
+@booking_routes.route("", methods=["PUT"])
 @login_required
 def edit_booking():
     form = UpdateBookingForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit:
         booking = Booking.query.get(form.id.data)
 
@@ -65,13 +68,13 @@ def edit_booking():
 
         db.session.commit()
         return booking.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+    return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
-@booking_routes.route('/<id>', methods = ["DELETE"])
+@booking_routes.route("/<id>", methods=["DELETE"])
 @login_required
 def delete_booking(id):
     booking = Booking.query.get(id)
     db.session.delete(booking)
     db.session.commit()
-    return ("booking deleted!")
+    return "booking deleted!"
