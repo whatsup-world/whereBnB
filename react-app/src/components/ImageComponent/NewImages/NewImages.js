@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
+import { addImageThunk } from '../../../store/image';
 // import { add}
 
 
-const NewImagePage = () => {
+const NewImagePage = ({ listingId }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
     const userId = useSelector(state => state.session.user.id)
+
+    console.log(listingId)
 
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
@@ -17,9 +20,12 @@ const NewImagePage = () => {
         e.preventDefault()
 
         const payload = {
-            image
+            image_url: image,
+            listing_id: listingId
         }
 
+        await dispatch(addImageThunk(payload))
+        history.push(`/listings`)
 
     }
 

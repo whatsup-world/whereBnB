@@ -10,6 +10,7 @@ import Images from '../../ImageComponent/Images/Images/Images';
 import "./SingleListing.css"
 import { getBookingsThunk } from '../../../store/booking';
 import { getLikesThunk } from '../../../store/like';
+import NewImagePage from '../../ImageComponent/NewImages/NewImages';
 
 const SingleListing = () => {
     const dispatch = useDispatch()
@@ -51,6 +52,7 @@ const SingleListing = () => {
                     )
                 }} */}
                 <Images listing={listing}/>
+                <NewImagePage listingId={listing.id}/>
                 <h4>{listing.address}, {listing.city}, {listing.state} {listing.zip}</h4>
                 <p>{listing.category}</p>
                 <p>{listing.description}</p>
