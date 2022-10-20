@@ -3,15 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getListingsThunk } from '../../../store/listing';
 import { getLikesThunk, addLikeThunk } from '../../../store/like';
+import { useSearchBar } from '../../../context/SearchBarContext';
 import "./Listings.css"
 
 const Listings = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const listings = useSelector(state => state.listing)
-    const likes = useSelector(state => state.like)
+    const likes = useSelector(state => state?.like)
+    const { searchTerm } = useSearchBar()
 
-    // const listings = useSelector(state => state.listing)
+
 
     useEffect(() => {
         dispatch(getListingsThunk(), getLikesThunk())
@@ -21,21 +23,31 @@ const Listings = () => {
 
     if (!listings) return ("loading")
 
+
+    const filteredListings = Object.values(listings).filter(listing => {
+        return (listing.city.toLowerCase().includes(searchTerm.toLowerCase())
+            || listing.category.toLowerCase().includes(searchTerm.toLowerCase())
+            || listing.category.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+    })
+
+
     const goToSingleListing = (listing) => {
         history.push(`/listings/${listing.id}`)
     }
 
-    const handleLike = async()=> {
-        await dispatch(addLikeThunk())
+    const handleLike = async(listingId)=> {
+        console.log(listingId)
+        await dispatch(addLikeThunk(listingId))
     }
 
     return (
         <div className='listings'>
             <h1>All Listings</h1>
             {
-                Object.values(listings).map(listing => (
-                    <div key={listing.id} onClick={() => goToSingleListing(listing)} id="listing-container">
-                        <div id='image-container'><img src={listing.cover_img} className="cover-img"/></div>
+                filteredListings.map(listing => (
+                    <div key={listing.id}  id="listing-container">
+                        <div id='image-container'><img onClick={() => goToSingleListing(listing)} src={listing.cover_img} className="cover-img"/></div>
                         <div id='address-line'>
                             <div id='address-line-left'><h4>{listing.city}, {listing.state}</h4></div>
                             <div id='address-line-right'><p>hosted by&nbsp;</p> <h4>{listing.listing_owner.username}</h4></div>
@@ -43,11 +55,15 @@ const Listings = () => {
                         <p>{listing.category}</p>
                         {/* <p>{listing.description}</p> */}
                         <p>${listing.price} night</p>
-                        { likes?
-                            <button className='listing-liked' type='button' onClick={handleLike}><i className="fa-solid fa-heart fa-lg"></i></button>
-                            :
-                            <button className='listing-unliked' type='button' onClick={handleLike}><i className="fa-regular fa-heart fa-lg"></i></button>
-                        }
+                        <div className='like-buttons'>
+
+                            { likes?
+                                <button className='listing-liked' type='button' onClick={() => handleLike(listing.id)}><i className="fa-solid fa-heart fa-lg"></i></button>
+                                :
+                                <button className='listing-unliked' type='button' onClick={() => handleLike(listing.id)}><i className="fa-regular fa-heart fa-lg"></i></button>
+
+                            }
+                        </div>
                     </div>
                     // {console.log(listing)}
                 ))

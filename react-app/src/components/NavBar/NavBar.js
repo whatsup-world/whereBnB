@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import LoginFormModal from '../auth/LoginFormModal';
 import "./NavBar.css"
+import SearchBar from './SearchBar';
 
 const NavBar = () => {
   const user = useSelector(state => state?.session.user)
@@ -86,11 +87,9 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
-        {/* <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li> */}
+        <li>
+          <SearchBar />
+        </li>
         <li>
           <NavLink to='/listings' exact={true} activeClassName='active'>
             All Listings

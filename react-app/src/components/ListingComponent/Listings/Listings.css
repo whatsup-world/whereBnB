@@ -31,6 +31,10 @@
     /* height: */
 }
 
+/* #listing-container i {
+
+} */
+
 #address-line {
     display: flex;
     width: 100%;
@@ -47,4 +51,8 @@
     display: flex;
     justify-content: flex-end;
     align-items: center
+}
+
+.like-buttons {
+    background-color: none;
 }

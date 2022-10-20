@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 import { ModalProvider } from "./context/Modal";
+import SearchBarProvider from './context/SearchBarContext';
 
 const store = configureStore();
 
@@ -12,7 +13,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ModalProvider>
       <Provider store={store}>
-        <App />
+        <SearchBarProvider>
+          <App />
+        </SearchBarProvider>
       </Provider>
     </ModalProvider>
   </React.StrictMode>,

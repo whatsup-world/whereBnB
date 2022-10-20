@@ -9,7 +9,7 @@ const NewImagePage = ({ listingId }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const userId = useSelector(state => state.session.user.id)
+    const activeUser = useSelector(state => state?.session.user)
 
     console.log(listingId)
 
