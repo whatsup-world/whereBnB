@@ -28,7 +28,6 @@ const Images = (listing) => {
                         return (
                             <div key={image.id}>
                                 <img src={image.image_url} />
-                                <img src='https://wherebnb1.s3.us-west-1.amazonaws.com/fc879322-afc0-47a0-b199-a87f9abe1f85.jpg' />
                             </div>
                         )
                     })}

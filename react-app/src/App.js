@@ -19,6 +19,7 @@ import Footer from './components/Footer/Footer';
 import About from './components/About/About';
 import HomePage from './components/HomePage/HomePage';
 import Images from './components/ImageComponent/Images/Images/Images';
+import NewImagePage from './components/ImageComponent/NewImages/NewImages';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -78,6 +79,9 @@ function App() {
         <Route path='/listing_images' exact={true}>
           <Images />
         </Route>
+        <ProtectedRoute path='/listings/:listingId/newImage'>
+          <NewImagePage />
+        </ProtectedRoute>
       </Switch>
       <Footer />
     </BrowserRouter>
