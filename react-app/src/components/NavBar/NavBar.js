@@ -90,11 +90,11 @@ const NavBar = () => {
         <li>
           <SearchBar />
         </li>
-        <li>
+        {/* <li>
           <NavLink to='/listings' exact={true} activeClassName='active'>
             All Listings
           </NavLink>
-        </li>
+        </li> */}
         {sessionLinks}
       </ul>
     </nav>

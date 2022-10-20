@@ -31,6 +31,8 @@ const Listings = () => {
         )
     })
 
+    console.log(filteredListings)
+
 
     const goToSingleListing = (listing) => {
         history.push(`/listings/${listing.id}`)
@@ -40,6 +42,8 @@ const Listings = () => {
         console.log(listingId)
         await dispatch(addLikeThunk(listingId))
     }
+
+
 
     return (
         <div className='listings'>
@@ -57,12 +61,12 @@ const Listings = () => {
                         <p>${listing.price} night</p>
                         <div className='like-buttons'>
 
-                            { likes?
+                            {/* { likes?
                                 <button className='listing-liked' type='button' onClick={() => handleLike(listing.id)}><i className="fa-solid fa-heart fa-lg"></i></button>
                                 :
                                 <button className='listing-unliked' type='button' onClick={() => handleLike(listing.id)}><i className="fa-regular fa-heart fa-lg"></i></button>
 
-                            }
+                            } */}
                         </div>
                     </div>
                     // {console.log(listing)}
