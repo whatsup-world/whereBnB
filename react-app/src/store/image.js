@@ -28,8 +28,8 @@ export const getImagesThunk = (listingId) => async (dispatch) => {
 
 export const addImageThunk = (payload) => async(dispatch) => {
     const { listing_id, image_url } = payload;
-    // console.log("++++++++++addImageThunk++++++++++++",listing_id)
-    // console.log("++++++++++addImageThunk++++++++++++",image_url)
+    console.log("++++++++++addImageThunk++++++++++++",listing_id)
+    console.log("++++++++++addImageThunk++++++++++++",image_url)
     const formData = new FormData();
     formData.append("listing_id", listing_id);
     formData.append("image_url", image_url);
@@ -43,6 +43,8 @@ export const addImageThunk = (payload) => async(dispatch) => {
         // },
         body: formData
     });
+
+    console.log(response)
 
     if (response.ok) {
         const data = await response.json();
