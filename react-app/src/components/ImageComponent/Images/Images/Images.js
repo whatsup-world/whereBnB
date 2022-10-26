@@ -7,8 +7,8 @@ const Images = (listing) => {
     const dispatch = useDispatch()
     const images = useSelector(state => state?.image)
     const imagesArr = Object.values(images)
-    console.log(imagesArr)
-    console.log(listing.listing.id)
+    // console.log(imagesArr)
+    // console.log(listing.listing.id)
 
     useEffect(() => {
         dispatch(getImagesThunk(listing.listing.id))

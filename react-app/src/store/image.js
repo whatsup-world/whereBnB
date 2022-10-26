@@ -34,6 +34,7 @@ export const addImageThunk = (payload) => async(dispatch) => {
     formData.append("listing_id", listing_id);
     formData.append("image_url", image_url);
 
+    console.log(formData)
 
     const response = await fetch(`/api/listing_images`, {
         method: "POST",

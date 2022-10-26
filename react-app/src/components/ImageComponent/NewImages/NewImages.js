@@ -24,8 +24,10 @@ const NewImagePage = ({ listingId }) => {
             listing_id: listingId
         }
 
+        console.log(payload)
         await dispatch(addImageThunk(payload))
-        history.push(`/listings`)
+
+        history.push(`/listings/${listingId}`)
 
     }
 

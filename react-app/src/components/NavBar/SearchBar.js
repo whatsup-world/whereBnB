@@ -9,7 +9,7 @@ const SearchBar = () => {
     const [query, setQuery] = useState('')
     // const listingsArr = Object.values(listings)
 
-    console.log("hey")
+    // console.log("hey")
 
     const handleSearch = (e) => {
         e.preventDefault()
