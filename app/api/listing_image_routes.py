@@ -38,24 +38,23 @@ def add_listing_images():
     form["csrf_token"].data = request.cookies["csrf_token"]
     print("hitting print listing route")
     if form.validate_on_submit():
+        print("hitting form validate")
         if 'image_url' in request.files:
-            print("++++++++image_url+++++++++", image_url)
+            print("hitting request file")
             image = request.files["image_url"]
 
             if not allowed_file(image.filename):
-                print("+++++++++++++++",image.filename)
-                print("++++++++image_url+++++++++", image_url)
+                print("hit not allowed file")
                 return {"errors": "file type not permitted"}, 400
 
             image.filename = get_unique_filename(image.filename)
 
             upload = upload_file_to_s3(image)
-            print("++++++++upload_file_to_s3+++++++",image)
-            print("++++++++image_url+++++++++", image_url)
+            print("hitting upload")
 
-            print("+++++++++++++",upload)
 
             if "url" not in upload:
+                print("hitting not in upload")
                 return upload, 400
 
             image_url = upload["url"]
