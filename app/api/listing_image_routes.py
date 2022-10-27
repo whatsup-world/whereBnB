@@ -51,7 +51,7 @@ def add_listing_images():
 
             upload = upload_file_to_s3(image)
             print("hitting upload")
-
+            print("++++++upload+++++++",upload)
 
             if "url" not in upload:
                 print("hitting not in upload")
