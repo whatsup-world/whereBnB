@@ -4,6 +4,9 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    position:fixed;
+    width: 100%;
+    background-color: white;
 }
 
 #footer-container > ul{
