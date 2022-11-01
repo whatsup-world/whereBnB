@@ -7,7 +7,7 @@ const Footer= () => {
         <div id='footer-container'>
             <ul>
                 <li>
-                    <a href="https://www.linkedin.com/in/xiangyou-wang-800988139/">
+                    <a href="https://www.linkedin.com/in/xiangyou-wang-800988139/" target="_blank">
                         <img src="https://sharethis.imgix.net/2017/05/LinkedIn.png?fm=webp&auto=compress&q=1" width='30px'></img>
                     </a>
                 </li>
@@ -17,7 +17,7 @@ const Footer= () => {
                     </Link>
                 </li>
                 <li>
-                    <a href="https://github.com/whatsup-world">
+                    <a href="https://github.com/whatsup-world" target="_blank">
                         <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width='30px'></img>
                     </a>
                 </li>
