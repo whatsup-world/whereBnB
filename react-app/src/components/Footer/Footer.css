@@ -4,9 +4,10 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    position:fixed;
+    position:sticky;
     width: 100%;
     background-color: white;
+    opacity: 90%;
 }
 
 #footer-container > ul{

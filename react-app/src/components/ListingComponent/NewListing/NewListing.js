@@ -18,7 +18,7 @@ const ListingForm = () => {
     const [price, setPrice] = useState('')
     const [errors, setErrors] = useState([])
     const [cover_img, setCover_img] = useState('')
-    const [submitEnabled, setSubmitEnabled] = useState(false)
+    const [hasSubmitted, setHasSubmitted] = useState(false)
 
 
     useEffect(() => {
@@ -33,13 +33,12 @@ const ListingForm = () => {
         if (price < 1 || price > 60000) {errorArr.push("Price range has to between $1 and $60000")}
         if (price.includes(".") || price.includes("e")) {errorArr.push("Price range has to be an integer")}
 
-
         setErrors(errorArr)
     },[address, city, state, zip, description, category, price, cover_img])
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-
+        setHasSubmitted(true)
         const payload = {
             cover_img,
             user_id: userId,
@@ -54,7 +53,10 @@ const ListingForm = () => {
 
         // console.log(payload)
         await dispatch(addListingThunk(payload))
-        history.push(`/listings`)
+        if (payload && !errors.length) {
+            setHasSubmitted(false)
+            history.push(`/listings`)
+        }
 
     }
 
@@ -62,7 +64,7 @@ const ListingForm = () => {
         <fieldset>
             <form onSubmit={handleSubmit} className="listing-form-container">
                 <div>
-                    {errors.map((error, ind) => (
+                    {hasSubmitted && errors.map((error, ind) => (
                         <div key={ind} className="error-messages">{error}</div>
                     ))}
                 </div>
@@ -221,7 +223,8 @@ const ListingForm = () => {
                         required={true}
                     />
                 </div>
-                <button disabled={!!errors.length} id='confirm-button'>Submit</button>
+                {/* <button disabled={!!errors.length} id='confirm-button'>Submit</button> */}
+                <button id='confirm-button'>Submit</button>
             </form>
         </fieldset>
     )

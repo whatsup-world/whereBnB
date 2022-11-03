@@ -5,8 +5,9 @@ import { editListingThunk } from "../../../store/listing";
 
 const EditListing = ({ listing }) => {
     const dispatch = useDispatch();
-    // const history = useHistory();
+    const history = useHistory();
     const user = useSelector(state => state?.session.user)
+    // console.log(listing)
     const { listingId } = useParams()
 
     const [address, setAddress] = useState(listing?.address)
@@ -16,8 +17,10 @@ const EditListing = ({ listing }) => {
     const [description, setDescription] = useState(listing?.description)
     const [category, setCategory] = useState(listing?.category)
     const [price, setPrice] = useState("")
-    const [errors, setErrors] = useState([])
     const [cover_img, setCover_img] = useState(listing?.cover_img)
+    const [errors, setErrors] = useState([])
+    const [hasSubmitted, setHasSubmitted] = useState(false)
+
 
     useEffect(() => {
         let errorArr = [];
@@ -29,7 +32,8 @@ const EditListing = ({ listing }) => {
         if (!category) {errorArr.push("Please select a category")}
         if (description.length < 5 || description.length > 200) {errorArr.push("Description length has to between 5 and 200")}
         if (price < 1 || price > 60000) {errorArr.push("Price range has to between $1 and $60000")}
-        if (price?.includes(".") || price?.includes("e")) {errorArr.push("Price range has to be an integer")}
+        if (price.includes(".") || price.includes("e")) {errorArr.push("Price range has to be an integer")}
+
 
 
         setErrors(errorArr)
@@ -38,7 +42,7 @@ const EditListing = ({ listing }) => {
 
     const handleEdit = async(e) => {
         e.preventDefault()
-
+        setHasSubmitted(true)
         const updatedListingInfo = {
             id: listingId,
             user_id: user.id,
@@ -54,6 +58,10 @@ const EditListing = ({ listing }) => {
 
         // console.log("updatedListingInfo",updatedListingInfo)
         dispatch(editListingThunk(updatedListingInfo))
+        if (updatedListingInfo && !errors.length) {
+            setHasSubmitted(false)
+            history.push(`/listings/${listingId}`)
+        }
     }
 
     return (
@@ -64,7 +72,7 @@ const EditListing = ({ listing }) => {
         <fieldset>
             <form onSubmit={handleEdit} className="listing-form-container">
                 <div>
-                    {errors.map((error, ind) => (
+                    {hasSubmitted && errors.map((error, ind) => (
                         <div key={ind} className="error-messages">{error}</div>
                     ))}
                 </div>
@@ -226,7 +234,8 @@ const EditListing = ({ listing }) => {
                         required={true}
                     />
                 </div>
-                <button disabled={!!errors.length} id='confirm-button'>Confirm Edit</button>
+                {/* <button disabled={!!errors.length} id='confirm-button'>Confirm Edit</button> */}
+                <button id='confirm-button'>Confirm Edit</button>
 
             </form>
         </fieldset>
