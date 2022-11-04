@@ -52,9 +52,9 @@ const ListingForm = () => {
         }
 
         // console.log(payload)
-        await dispatch(addListingThunk(payload))
         if (payload && !errors.length) {
             setHasSubmitted(false)
+            await dispatch(addListingThunk(payload))
             history.push(`/listings`)
         }
 

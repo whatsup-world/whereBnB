@@ -57,9 +57,9 @@ const EditListing = ({ listing }) => {
         }
 
         // console.log("updatedListingInfo",updatedListingInfo)
-        dispatch(editListingThunk(updatedListingInfo))
         if (updatedListingInfo && !errors.length) {
             setHasSubmitted(false)
+            dispatch(editListingThunk(updatedListingInfo))
             history.push(`/listings/${listingId}`)
         }
     }
