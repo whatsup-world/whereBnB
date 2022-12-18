@@ -19,7 +19,7 @@ const SingleListing = () => {
     const activeUser = useSelector(state => state?.session.user)
     // console.log(activeUser)
     const { listingId } = useParams()
-    // console.log(listingId)
+    console.log(listingId)
     // console.log(listingId)
     // const listing = listings.listingId
     const listing = useSelector(state => state?.listing[listingId])
